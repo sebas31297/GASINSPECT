@@ -1,0 +1,88 @@
+<!-- Contenedor principal -->
+<div class="container-fluid p-0 ">
+    <div class="row m-0" id="header"></div>
+
+    <div class="row ps-5 pt-3 pe-3">
+        <!-- Imagen del logo -->
+        <div class="col-md-4 ">
+            <div id="divlogo">
+                <a href="inicio.html">
+                    <img id="imga" src="../logo/logimag.png" alt="Logo de la empresa">
+                </a>
+            </div>
+        </div>
+
+        <!-- Sección de filtro, búsqueda e íconos -->
+        <div class="col-md-8 d-flex justify-content-end ">
+            <div id="div-filtro-icon" class="d-flex justify-content-center">
+                <!-- Botones de perfil, notificaciones y mensajes -->
+                <div id="divbutton" class="d-flex align-items-center">
+                    <button class="icon btn" onclick="window.location.href='notificaciones.html'"><i
+                            class="far fa-bell"></i></button>
+                    <button class="icon btn" onclick="window.location.href='EditarPerfil.html'"><i
+                            class="far fa-user"></i></button>
+                    <button class="icon btn" onclick="window.location.href='correoInterno.html'"><i class="far fa-envelope"></i></button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row pb-3 pt-3">
+        <!-- Navegador -->
+        <div id="divnavprin" class="">
+            <nav id="nav-prin" class="nav">
+                <div class="dropdown">
+                    <a href="#" class="menu nav-link">Agenda</a>
+                    <ul class="submenu dropdown-menu">
+                        <li><a href="registroInspeccion.html" class="dropdown-item">Agendar nueva inspeccion</a></li>
+                        <li><a href="inspect agendadas.html" class="dropdown-item">Inspecciones agendadas</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <a href="#" class="menu nav-link">Inspecciones</a>
+                    <ul class="submenu dropdown-menu">
+                        <li><a href="inspect real.html" class="dropdown-item">Inspecciones realizadas</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <a href="#" class="menu nav-link">Accesos</a>
+                    <ul class="submenu dropdown-menu">
+                        <li><a href="permisos.html" class="dropdown-item">Permisos</a></li>
+                        <li>
+                            <a href="#" class="dropdown-item">Empleados</a>
+                            <ul class="submenuAni dropdown-menu">
+                                <li><a href="ingreso.html" class="dropdown-item">Registrar empleado</a></li>
+                                <li><a href="empleados.html" class="dropdown-item">Informacion de empleados</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <a href="contactos.html" class="menu nav-link">Contactos</a>
+                <div class="dropdown">
+                    <a href="#" class="menu nav-link">Calculadora</a>
+                    <ul class="submenu dropdown-menu">
+                        <li><a href="calculadora.html" class="dropdown-item">Calculadora estandar</a></li>
+                        <li><a href="conversor.html" class="dropdown-item">Conversor de unidades</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <a href="#" class="menu nav-link">Normativa</a>
+                    <ul class="submenu dropdown-menu">
+                        <li><a href="/pdf/LIBRO INS-IP-02. INSTRUCTIVO  DE NUEVAS Y REFORMAS.pdf"
+                                class="dropdown-item">Instructivo de inspeccion</a></li>
+                        <li><a href="/pdf/normatividad.pdf" class="dropdown-item">Tabla de potencias y normatividad</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <a href="#" class="menu nav-link">Ayuda</a>
+                    <ul class="submenu dropdown-menu">
+                        <li><a href="#" class="dropdown-item">Manual de usuario</a></li>
+                        <li><a href="#" class="dropdown-item">Soporte tecnico</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>

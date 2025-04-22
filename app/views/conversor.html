@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Unidades</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="main.css"><!-- Estilos personalizados -->
+    <link rel="stylesheet" href="../navstyle.css"><!--navegador -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!--favicon-->
+    <link rel="icon" type="image/x-icon"    href="logo/logimag.png">
+</head>
+
+<body>
+<div id="navbar"></div>
+
+<!--NAVEGAVOR ICONOS Y LOGO-->
+<div id="navbar"></div>
+<script src="nav.js"></script>
+
+<!--FIN NAVEGAVOR ICONOS Y LOGO-->
+
+    <div class="row d-flex justify-content-center">
+        <div
+            class="col-md-11 p-3 d-flex justify-content-between aling-items-center border-bottom border-gris-oscuro border-2">
+            <h2 class=" mt-1 text-success fw-semibold" id="tituloRegistro">Calculadora</h2>
+            <button class="btn btn-secondary " onclick="window.location.href='inicio.html'">Inicio</button>
+            <!--encabezado, tamaño (h2)=32px, para titulos, color verde, peso de fuente (semibold)-->
+        </div>
+</div>
+<div class="registro-container"><!--nombre para mi css-->
+    <div class="container mt-4">
+        <div class="card-custom">
+            <div class="card-body">
+                <h5>Conversor de Unidades</h5>
+                <p>Seleccione la unidad a convertir</p>
+                <!-- selector de unidades--->
+                <div class="d-flex justify-content-center align-items-center flex-wrap mb-3">
+                    <div class="form-check me-3">
+                        <input class="form-check-input" type="radio" name="listGroupRadio" value="lineal" id="linealRadio" checked>
+                        <label class="form-check-label" for="linealRadio">Lineal</label>
+                    </div>
+                    <div class="form-check me-3">
+                        <input class="form-check-input" type="radio" name="listGroupRadio" value="area" id="areaRadio">
+                        <label class="form-check-label" for="areaRadio">Área</label>
+                    </div>
+                    <div class="form-check me-3">
+                        <input class="form-check-input" type="radio" name="listGroupRadio" value="volumen" id="volumenRadio">
+                        <label class="form-check-label" for="volumenRadio">Volumen</label>
+                    </div>
+                    <div class="form-check me-3">
+                        <input class="form-check-input" type="radio" name="listGroupRadio" value="masa" id="masaRadio">
+                        <label class="form-check-label" for="masaRadio">Masa</label>
+                    </div>
+                    <div class="form-check me-3">
+                        <input class="form-check-input" type="radio" name="listGroupRadio" value="velocidad" id="velocidadRadio">
+                        <label class="form-check-label" for="velocidadRadio">Velocidad</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="listGroupRadio" value="tiempo" id="tiempoRadio">
+                        <label class="form-check-label" for="tiempoRadio">Tiempo</label>
+                    </div>
+                </div>
+                
+                <!-- Inputs y selección de unidades -->
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-md-5">
+                        <div class="input-group">
+                            <select class="form-select" id="unidadOrigenDropdown" style="max-width: 25%;"></select>
+                            <input type="number" class="form-control" id="valorInput" placeholder="Ingrese el valor">
+                        </div>
+                    </div>
+                    <div class="col-md-1 text-center">
+                        <button class="btn btn btn-icon" onclick="realizarConversion()">
+                            <i class="bi bi-play-fill"></i>
+                        </button>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="input-group">
+                            <select class="form-select" id="unidadDestinoDropdown" style="max-width: 25%;"></select>
+                            <input type="text" class="form-control" id="resultadoOutput" placeholder="Resultado" readonly>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Inicializar opciones según la categoría seleccionada
+    document.querySelectorAll('input[name="listGroupRadio"]').forEach(radio => {
+        radio.addEventListener('change', () => {
+            const category = radio.value;
+            const unidadOrigenDropdown = document.getElementById("unidadOrigenDropdown");
+            const unidadDestinoDropdown = document.getElementById("unidadDestinoDropdown");
+
+            let options = {
+                lineal: ['cm', 'mm', 'm', 'km'],
+                area: ['m2', 'cm2', 'km2', 'hectarea'],
+                volumen: ['m3', 'cm3', 'litro', 'ml'],
+                masa: ['kg', 'g', 'lb', 'oz'],
+                velocidad: ['ms', 'kmh', 'mph'],
+                tiempo: ['s', 'min', 'h', 'd']
+            };
+
+            unidadOrigenDropdown.innerHTML = '';
+            unidadDestinoDropdown.innerHTML = '';
+
+            options[category].forEach(unit => {
+                const optionOrigen = document.createElement("option");
+                const optionDestino = document.createElement("option");
+                optionOrigen.value = unit;
+                optionDestino.value = unit;
+                optionOrigen.textContent = unit === 'm2' ? 'm²' : 
+                                            unit === 'cm2' ? 'cm²' :
+                                            unit === 'km2' ? 'km²' :
+                                            unit === 'm3' ? 'm³' :
+                                            unit === 'cm3' ? 'cm³' :
+                                            unit === 'hectarea' ? 'Hectárea' : unit;
+                optionDestino.textContent = optionOrigen.textContent;
+                unidadOrigenDropdown.appendChild(optionOrigen);
+                unidadDestinoDropdown.appendChild(optionDestino);
+            });
+        });
+    });
+
+    // Configurar valores iniciales al cargar la página
+    document.getElementById("linealRadio").click();
+
+    // Función para realizar la conversión
+    function realizarConversion() {
+        const valor = parseFloat(document.getElementById("valorInput").value);
+        const unidadOrigen = document.getElementById("unidadOrigenDropdown").value;
+        const unidadDestino = document.getElementById("unidadDestinoDropdown").value;
+        const resultadoOutput = document.getElementById("resultadoOutput");
+
+        if (isNaN(valor)) {
+            resultadoOutput.value = "Ingrese un valor válido";
+            return;
+        }
+
+        let conversiones = {
+            cm: { cm: 1, mm: 10, m: 0.01, km: 0.00001 },
+            mm: { cm: 0.1, mm: 1, m: 0.001, km: 0.000001 },
+            m: { cm: 100, mm: 1000, m: 1, km: 0.001 },
+            km: { cm: 100000, mm: 1000000, m: 1000, km: 1 },
+            m2: { m2: 1, cm2: 10000, km2: 0.000001, hectarea: 0.0001 },
+            cm2: { m2: 0.0001, cm2: 1, km2: 1e-10, hectarea: 1e-8 },
+            km2: { m2: 1000000, cm2: 1e10, km2: 1, hectarea: 100 },
+            hectarea: { m2: 10000, cm2: 1e8, km2: 0.01, hectarea: 1 },
+            m3: { m3: 1, cm3: 1000000, litro: 1000, ml: 1000000 },
+            cm3: { m3: 0.000001, cm3: 1, litro: 0.001, ml: 1 },
+            litro: { m3: 0.001, cm3: 1000, litro: 1, ml: 1000 },
+            ml: { m3: 1e-6, cm3: 1, litro: 0.001, ml: 1 },
+            kg: { kg: 1, g: 1000, lb: 2.20462, oz: 35.274 },
+            g: { kg: 0.001, g: 1, lb: 0.00220462, oz: 0.035274 },
+            lb: { kg: 0.453592, g: 453.592, lb: 1, oz: 16 },
+            oz: { kg: 0.0283495, g: 28.3495, lb: 0.0625, oz: 1 },
+            ms: { ms: 1, kmh: 3.6, mph: 2.23694 },
+            kmh: { ms: 0.277778, kmh: 1, mph: 0.621371 },
+            mph: { ms: 0.44704, kmh: 1.60934, mph: 1 },
+            s: { s: 1, min: 1 / 60, h: 1 / 3600, d: 1 / 86400 },
+            min: { s: 60, min: 1, h: 1 / 60, d: 1 / 1440 },
+            h: { s: 3600, min: 60, h: 1, d: 1 / 24 },
+            d: { s: 86400, min: 1440, h: 24, d: 1 }
+        };
+
+        let factorOrigen = conversiones[unidadOrigen];
+        let factorDestino = factorOrigen ? factorOrigen[unidadDestino] : null;
+
+        if (factorDestino) {
+            resultadoOutput.value = (valor * factorDestino).toFixed(2);
+        } else {
+            resultadoOutput.value = "Conversión no válida";
+        }
+    }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<footer class=" mt-5  p-2 border-top border-2 text-center text-azul-institucional">
+    © 2024 - GasInspect - Derechos reservados.
+</footer>
+</body>
+</html>
+
+

@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revision de inspeccion</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <!--enlace con biblioteca de iconos de bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-calendar/css/calendar.min.css" rel="stylesheet">
+    <!-- Estilos CSS para bootstrap-calendar -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!--boostrap-->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!--tipo de fuete google-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <!--enlace con fuente de letra estilo montserrat-->
+
+    <link rel="stylesheet" href="../navstyle.css">
+    <!--estilos del navegador-->
+    <link rel="stylesheet" href="../main.css">
+    <!--estilos editados del boostrap-->
+    <link rel="icon" type="image/x-icon"    href="logo/logimag.png">
+
+</head>
+
+<body>
+
+    <!--NAVEGAVOR ICONOS Y LOGO-->
+    <div id="navbar"></div>
+    <script src="nav.js"></script>
+
+    <!--FIN NAVEGAVOR ICONOS Y LOGO-->
+
+    <div class="row d-flex justify-content-center">
+        <div
+            class="col-md-11 p-3 d-flex justify-content-between aling-items-center border-bottom border-gris-oscuro border-2">
+            <h2 class=" mt-1 text-success fw-semibold" id="tituloRegistro">Inspecciones</h2>
+            <button class="btn btn-secondary " onclick="window.location.href='inicio.html'">Inicio</button>
+            <!--encabezado, tamaño (h2)=32px, para titulos, color verde, peso de fuente (semibold)-->
+        </div>
+    </div>
+
+
+    <div class="container-fluid mt-5 d-flex justify-content-center">
+        <div class="row">
+            <!-- Panel izquierdo: Lista de notificaciones -->
+            <div class=" w-auto col-md-5 bg-gris-claro p-4 border border-2 border-azul-institucional rounded-3 ">
+
+                <h5 class="text-azul-institucional fw-semibold">Revision de inspeccion</h5>
+                <p class="text-azul-institucional"> Elija cada uno de los items para la revision</p>
+
+                <div class="list-group p-2 bg-white border-2 border border-gris-oscuro text-verde-institucional">
+                    <!-- Botón para "Fachada del predio" -->
+                    <button class="btn-gris-claro list-group-item list-group-item-action text-azul-institucional"
+                        onclick="mostrarInspeccion('Fachada del predio', 'Contenido de la inspección para Fachada del predio.')">
+                        Fachada del predio
+                    </button>
+
+                    <!-- Botón para "Informe condiciones contractuales" -->
+                    <button class="btn-gris-claro list-group-item list-group-item-action text-azul-institucional"
+                        onclick="mostrarInspeccion('Informe condiciones contractuales', 'Contenido de la inspección para Informe condiciones contractuales.')">
+                        Informe condiciones contractuales
+                    </button>
+
+                    <!-- Botón para "Medidor - Inicio de hermeticidad" -->
+                    <button class="btn-gris-claro list-group-item list-group-item-action text-azul-institucional"
+                        onclick="mostrarInspeccion('Medidor - Inicio de hermeticidad', 'Contenido de la inspección para Medidor - Inicio de hermeticidad.')">
+                        Medidor - Inicio de hermeticidad
+                    </button>
+
+                    <!-- Botón para otra instancia de "Informe condiciones contractuales" (si se repite) -->
+                    <button class="btn-gris-claro list-group-item list-group-item-action text-azul-institucional"
+                        onclick="mostrarInspeccion('Informe condiciones contractuales', 'Contenido de la inspección para Informe condiciones contractuales.')">
+                        Informe condiciones contractuales
+                    </button>
+
+                    <!-- Botón para "Cuenta de servicios" -->
+                    <button class="btn-gris-claro list-group-item list-group-item-action text-azul-institucional"
+                        onclick="mostrarInspeccion('Cuenta de servicios', 'Contenido de la inspección para Cuenta de servicios.')">
+                        Cuenta de servicios
+                    </button>
+
+                    <!-- Botón para "Valvula abierta - Detector de fugas" -->
+                    <button class="btn-gris-claro list-group-item list-group-item-action text-azul-institucional"
+                        onclick="mostrarInspeccion('Valvula abierta - Detector de fugas', 'Contenido de la inspección para Valvula abierta - Detector de fugas.')">
+                        Valvula abierta - Detector de fugas
+                    </button>
+
+                    <!-- Botón para "Valvula cerrada - Detector de fugas" -->
+                    <button class="btn-gris-claro list-group-item list-group-item-action text-azul-institucional"
+                        onclick="mostrarInspeccion('Valvula cerrada - Detector de fugas', 'Contenido de la inspección para Valvula cerrada - Detector de fugas.')">
+                        Valvula cerrada - Detector de fugas
+                    </button>
+
+                    <!-- Botón para "Conexion de artefactos - Detector de fugas" -->
+                    <button class="btn-gris-claro list-group-item list-group-item-action text-azul-institucional"
+                        onclick="mostrarInspeccion('Conexion de artefactos - Detector de fugas', 'Contenido de la inspección para Conexion de artefactos - Detector de fugas.')">
+                        Conexion de artefactos - Detector de fugas
+                    </button>
+
+                    <!-- Botón para "Trazado de validacion (Materiales, anclajes)" -->
+                    <button class="btn-gris-claro list-group-item list-group-item-action text-azul-institucional"
+                        onclick="mostrarInspeccion('Trazado de validacion (Materiales, anclajes)', 'Contenido de la inspección para Trazado de validacion (Materiales, anclajes).')">
+                        Trazado de validacion (Materiales, anclajes)
+                    </button>
+
+                    <!-- Botón para "Puntos taponados" -->
+                    <button class="btn-gris-claro list-group-item list-group-item-action text-azul-institucional"
+                        onclick="mostrarInspeccion('Puntos taponados', 'Contenido de la inspección para Puntos taponados.')">
+                        Puntos taponados
+                    </button>
+
+                    <!-- Botón para "Metodo de ventilacion" -->
+                    <button class="btn-gris-claro list-group-item list-group-item-action text-azul-institucional"
+                        onclick="mostrarInspeccion('Metodo de ventilacion', 'Contenido de la inspección para Metodo de ventilacion.')">
+                        Metodo de ventilacion
+                    </button>
+
+                    <!-- Botón para "CO del ambiente" -->
+                    <button class="btn-gris-claro list-group-item list-group-item-action text-azul-institucional"
+                        onclick="mostrarInspeccion('CO del ambiente', 'Contenido de la inspección para CO del ambiente.')">
+                        CO del ambiente
+                    </button>
+
+                    <!-- Botón para "Medidor - Fin hermeticidad" -->
+                    <button class="btn-gris-claro list-group-item list-group-item-action text-azul-institucional"
+                        onclick="mostrarInspeccion('Medidor - Fin hermeticidad', 'Contenido de la inspección para Medidor - Fin hermeticidad.')">
+                        Medidor - Fin hermeticidad
+                    </button>
+
+                    <!-- Botón para "Ubicacion de equipos encendidos" -->
+                    <button class="btn-gris-claro list-group-item list-group-item-action text-azul-institucional"
+                        onclick="mostrarInspeccion('Ubicacion de equipos encendidos', 'Contenido de la inspección para Ubicacion de equipos encendidos.')">
+                        Ubicacion de equipos encendidos
+                    </button>
+
+                    <!-- Botón para "Fotografia a 1 metro distancia" (puedes repetir si es necesario) -->
+                    <button class="btn-gris-claro list-group-item list-group-item-action text-azul-institucional"
+                        onclick="mostrarInspeccion('Fotografia a 1 metro distancia', 'Contenido de la inspección para Fotografia a 1 metro distancia.')">
+                        Fotografia a 1 metro distancia
+                    </button>
+                    <button class="btn-gris-claro list-group-item list-group-item-action text-azul-institucional"
+                        onclick="mostrarInspeccion('Fotografia a 1 metro distancia', 'Contenido de la inspección para Fotografia a 1 metro distancia.')">
+                        Fotografia a 1 metro distancia
+                    </button>
+                    <button class="btn-gris-claro list-group-item list-group-item-action text-azul-institucional"
+                        onclick="mostrarInspeccion('Fotografia a 1 metro distancia', 'Contenido de la inspección para Fotografia a 1 metro distancia.')">
+                        Fotografia a 1 metro distancia
+                    </button>
+
+                    <!-- Botón para "Sticker informativo" -->
+                    <button class="btn-gris-claro list-group-item list-group-item-action text-azul-institucional"
+                        onclick="mostrarInspeccion('Sticker informativo', 'Contenido de la inspección para Sticker informativo.')">
+                        Sticker informativo
+                    </button>
+
+                    <!-- Botón para "Sticker centro de medicion" -->
+                    <button class="btn-gris-claro list-group-item list-group-item-action text-azul-institucional"
+                        onclick="mostrarInspeccion('Sticker centro de medicion', 'Contenido de la inspección para Sticker centro de medicion.')">
+                        Sticker centro de medicion
+                    </button>
+
+                    <!-- Botón para "Informe de inspeccion diligenciado" -->
+                    <button class="btn-gris-claro list-group-item list-group-item-action text-azul-institucional"
+                        onclick="mostrarInspeccion('Informe de inspeccion diligenciado', 'Contenido de la inspección para Informe de inspeccion diligenciado.')">
+                        Informe de inspeccion diligenciado
+                    </button>
+
+                    <!-- Botón para "Observaciones" -->
+                    <button class="btn-gris-claro list-group-item list-group-item-action text-azul-institucional"
+                        onclick="mostrarInspeccion('Observaciones', 'Contenido de la inspección para Observaciones.')">
+                        Observaciones
+                    </button>
+
+                </div>
+                <div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-rojo-oscuro-in text-white mt-5 me-3 ">Reagendar</button>
+                    <button type="button" class="btn btn-azul-institucional text-white mt-5 ">Aceptar</button>
+                </div>
+            </div>
+
+
+            <!-- Panel derecho: Contenido de la notificación -->
+            <div
+                class="w-auto col-md-7 bg-gris-claro p-4 border border-2 border-azul-institucional rounded-3 d-flex flex-column">
+                <div class="card mt-2">
+                    <div class="card-header bg-light m-4"> <!-- Opcional: Da mejor estructura -->
+                        <h5 class="card-title fw-semibold text-azul-institucional" id="filtro-titulo">Titulo de la
+                            opcion</h5>
+                    </div>
+                    <div class="card-body">
+
+                        <!-- Imagen dentro del Card Body -->
+                        <div class="d-flex justify-content-center">
+                            <img src="../logo/logimag.png" class="img-fluid rounded mb-3"
+                                alt="Descripción de la imagen">
+                        </div>
+
+                        <label for="Observaciones"
+                            class="form-label mt-3 text-azul-institucional">Observaciones:</label>
+                        <textarea class="form-control" rows="6" placeholder="Ingrese su comentario"></textarea>
+
+                    </div>
+
+                </div>
+                <div class="d-flex justify-content-end mt-auto">
+                    <button type="button" class="btn btn-rojo-oscuro text-white mt-5 me-3 ">Rechazar</button>
+                    <button type="button" class="btn btn-verde-institucional text-white mt-5 ">Aprobar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class=" mt-5  p-2 border-top border-2 text-center text-azul-institucional">
+        © 2024 - GasInspect - Derechos reservados.
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

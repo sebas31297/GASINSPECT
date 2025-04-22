@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contactos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="main.css"><!-- Estilos personalizados -->
+    <link rel="stylesheet" href="../navstyle.css"><!--navegador -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!--favicon-->
+    <link rel="icon" type="image/x-icon"    href="logo/logimag.png">
+</head>
+
+<body>
+<!--NAVEGAVOR ICONOS Y LOGO-->
+<div id="navbar"></div>
+<script src="nav.js"></script>
+
+<!--FIN NAVEGAVOR ICONOS Y LOGO-->
+ 
+<!---------------------------------encabezado y boton -------->
+<div class="row d-flex justify-content-center">
+    <div
+        class="col-md-11 p-3 d-flex justify-content-between aling-items-center border-bottom border-gris-oscuro border-2">
+        <h2 class=" mt-1 text-success fw-semibold" id="tituloRegistro">Contactos</h2>
+        <button class="btn btn-secondary " onclick="window.location.href='inicio.html'">Inicio</button>
+        <!--encabezado, tamaño (h2)=32px, para titulos, color verde, peso de fuente (semibold)-->
+    </div>
+</div>
+<div class="registro-container"><!--nombre para mi css-->
+    <!-- Contenedor principal -->
+    <div class="container mt-4">
+        <div class="card-custom">
+            <div class="card-body">
+                <h5>Contactos</h5>
+                <p>Contacte con uno de los empleados</p>
+                <!-- Sección con espacio adicional entre columnas -->
+                <div class="row justify-content-center">
+                    <!-- Primera columna -->
+                    <div class="col-md-4 me-md-3">
+                        <div class="info-empleado mb-4">
+                            <strong>Cargo:</strong> Gerente<br>
+                            <strong>Nombre:</strong> Empleado 1<br>
+                            <strong>Correo:</strong> empleado1@ejemplo.com
+                            <div class="mt-2">
+                                <!-- Botón para abrir la ventana modal -->
+                                <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalMensaje" onclick="setRecipient('empleado1@ejemplo.com')">
+                                    <i class="bi bi-envelope"></i> Enviar mensaje
+                                </button>
+                            </div>
+                        </div>
+                        <div class="info-empleado mb-4">
+                            <strong>Cargo:</strong> Director Técnico<br>
+                            <strong>Nombre:</strong> Empleado 2<br>
+                            <strong>Correo:</strong> empleado2@ejemplo.com
+                            <div class="mt-2">
+                                <!-- Botón para abrir la ventana modal -->
+                                <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalMensaje" onclick="setRecipient('empleado2@ejemplo.com')">
+                                    <i class="bi bi-envelope"></i> Enviar mensaje
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Segunda columna -->
+                    <div class="col-md-4 ms-md-3">
+                        <div class="info-empleado mb-4">
+                            <strong>Cargo:</strong> Supervisor<br>
+                            <strong>Nombre:</strong> Empleado 3<br>
+                            <strong>Correo:</strong> empleado3@ejemplo.com
+                            <div class="mt-2">
+                                <!-- Botón para abrir la ventana modal -->
+                                <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalMensaje" onclick="setRecipient('empleado3@ejemplo.com')">
+                                    <i class="bi bi-envelope"></i> Enviar mensaje
+                                </button>
+                            </div>
+                        </div>
+                        <div class="info-empleado mb-4">
+                            <strong>Cargo:</strong> Auxiliar Administrativo<br>
+                            <strong>Nombre:</strong> Empleado 4<br>
+                            <strong>Correo:</strong> empleado4@ejemplo.com
+                            <div class="mt-2">
+                                <!-- Botón para abrir la ventana modal -->
+                                <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalMensaje" onclick="setRecipient('empleado4@ejemplo.com')">
+                                    <i class="bi bi-envelope"></i> Enviar mensaje
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalMensaje" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabel">Enviar mensaje</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formMensaje">
+                        <div class="mb-3">
+                            <label for="recipient" class="form-label">Destinatario</label>
+                            <input type="email" class="form-control" id="recipient" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="messageText" class="form-label">Mensaje</label>
+                            <textarea class="form-control" id="messageText" rows="4"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="sendMessage()">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function setRecipient(email) {
+        document.getElementById('recipient').value = email;
+    }
+
+    function sendMessage() {
+        const recipient = document.getElementById('recipient').value;
+        const message = document.getElementById('messageText').value;
+
+        if (message.trim() === '') {
+             alert('Por favor, escriba un mensaje antes de enviarlo.');
+            return;
+        }
+
+            
+        alert(`Mensaje enviado a ${recipient}: ${message}`);
+        document.getElementById('formMensaje').reset(); // Limpiar formulario
+        const modal = bootstrap.Modal.getInstance(document.getElementById('modalMensaje'));
+        modal.hide(); // Cerrar el modal
+    }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<footer class=" mt-5  p-2 border-top border-2 text-center text-azul-institucional">
+    © 2024 - GasInspect - Derechos reservados.
+</footer>
+</body>
+</html>

@@ -1,0 +1,434 @@
+/*TITULO*/
+#tituloRegistro {
+    margin-left: 2%; /* Ajusta este valor según tus necesidades */      
+}
+
+/* 🎨 Clases para Texto */
+.text-azul-institucional {
+    color: #033076 !important;
+}
+
+.text-azul-claro-institucional {
+    color: #75A9F9 !important;
+}
+
+.text-verde-institucional {
+    color: #30B32E !important;
+}
+
+.text-verde-claro {
+    color: #DDF0D1 !important;
+}
+
+.text-gris-oscuro {
+    color: #aaaaaa !important;
+}
+
+.text-gris-claro {
+    color: #EFF0F4 !important;
+}
+
+.text-rojo-oscuro {
+    color: #F85F6A !important;
+}
+
+.text-rojo-claro {
+    color: #FFE9EE !important;
+}
+
+.text-amarillo-oscuro {
+    color: #FFE533 !important;
+}
+
+.text-amarillo-claro {
+    color: #FFFBCC !important;
+}
+
+/* 🎨 Clases para Fondos */
+.bg-azul-institucional {
+    background-color: #033076 !important;
+}
+
+.bg-azul-claro-institucional {
+    background-color: #75A9F9 !important;
+
+}
+
+.bg-verde-institucional {
+    background-color: #30B32E !important;
+
+}
+
+.bg-verde-claro {
+    background-color: #DDF0D1 !important;
+
+}
+
+.bg-gris-oscuro {
+    background-color: #aaaaaa !important;
+
+}
+
+.bg-gris-claro {
+    background-color: #EFF0F4 !important;
+
+}
+
+.bg-rojo-oscuro {
+    background-color: #F85F6A !important;
+
+}
+
+.bg-rojo-claro {
+    background-color: #FFE9EE !important;
+
+}
+
+.bg-amarillo-oscuro {
+    background-color: #FFE533 !important;
+
+}
+
+.bg-amarillo-claro {
+    background-color: #FFFBCC !important;
+}
+
+
+/* Bordes con colores personalizados */
+
+/* Azul Institucional */
+.border-azul-institucional {
+    border-color: #033076 !important;
+}
+
+/* Azul Claro Institucional */
+.border-azul-claro-institucional {
+    border-color: #75A9F9 !important;
+}
+
+/* Verde Institucional */
+.border-verde-institucional {
+    border-color: #30B32E !important;
+}
+
+/* Verde Claro */
+.border-verde-claro {
+    border-color: #DDF0D1 !important;
+}
+
+/* Gris Oscuro */
+.border-gris-oscuro {
+    border-color: #aaaaaa !important;
+}
+
+/* Gris Claro */
+.border-gris-claro {
+    border-color: #EFF0F4 !important;
+}
+
+/* Rojo Oscuro */
+.border-rojo-oscuro {
+    border-color: #F85F6A !important;
+}
+
+/* Rojo Claro */
+.border-rojo-claro {
+    border-color: #FFE9EE !important;
+}
+
+/* Amarillo Oscuro */
+.border-amarillo-oscuro {
+    border-color: #FFE533 !important;
+}
+
+/* Amarillo Claro */
+.border-amarillo-claro {
+    border-color: #FFFBCC !important;
+}
+
+.border-azul-claro {
+    border-color:#1464F6  !important; /* Más oscuro */
+}
+
+/* 🎨 Botones con fondo personalizado */
+
+/* 🔹 Azul Institucional */
+.btn-azul-institucional {
+    background-color: #033076 !important;
+}
+.btn-azul-institucional:hover {
+    background-color:#1464F6  !important; /* Más oscuro */
+}
+
+/* 🔹 Azul Claro Institucional */
+.btn-azul-claro-institucional {
+    background-color: #75A9F9 !important;
+}
+.btn-azul-claro-institucional:hover {
+    background-color: #4D8BEF !important; /* Más oscuro */
+}
+
+/* 🔹 Verde Institucional */
+.btn-verde-institucional {
+    background-color: #30B32E !important;
+}
+.btn-verde-institucional:hover {
+    background-color: #1E7A1D !important; /* Más oscuro */
+}
+
+/* 🔹 Verde Claro */
+.btn-verde-claro {
+    background-color: #DDF0D1 !important;
+}
+.btn-verde-claro:hover {
+    background-color: #B5D8A9 !important; /* Más oscuro, pero manteniendo claridad */
+}
+
+/* 🔹 Gris Oscuro */
+.btn-gris-oscuro {
+    background-color: #606060 !important;
+}
+.btn-gris-oscuro:hover {
+    background-color: #aaaaaa !important; /* Más oscuro */
+}
+
+/* 🔹 Gris Claro */
+.btn-gris-claro {
+    background-color: #EFF0F4 !important;
+}
+.btn-gris-claro:hover {
+    background-color: #D0D1D4 !important; /* Más oscuro, pero manteniendo claridad */
+}
+
+/* 🔹 Rojo Oscuro */
+.btn-rojo-oscuro {
+    background-color: #F85F6A !important;
+}
+.btn-rojo-oscuro:hover {
+    background-color: #D94852 !important; /* Más oscuro */
+}
+
+.btn-rojo-oscuro-in {
+    background-color: #a5000b !important;
+}
+.btn-rojo-oscuro-in:hover {
+    background-color: #ff0000 !important; /* Más oscuro */
+}
+
+/* 🔹 Rojo Claro */
+.btn-rojo-claro {
+    background-color: #FFE9EE !important;
+}
+.btn-rojo-claro:hover {
+    background-color: #FFCCD6 !important; /* Más oscuro, pero manteniendo claridad */
+}
+
+/* 🔹 Amarillo Oscuro */
+.btn-amarillo-oscuro {
+    background-color: #FFE533 !important;
+}
+.btn-amarillo-oscuro:hover {
+    background-color: #E5C600 !important; /* Más oscuro */
+}
+
+/* 🔹 Amarillo Claro */
+.btn-amarillo-claro {
+    background-color: #FFFBCC !important;
+}
+.btn-amarillo-claro:hover {
+    background-color: #F0E59C !important; /* Más oscuro, pero manteniendo claridad */
+}
+
+
+/*PAGINA DE INICIO*/
+
+/* CARRUSEL DE IMAGENES */
+
+.carusel {
+    position: relative; /* Permite posicionar los elementos hijos absolutamente dentro del carrusel */
+    width: 100%; /* Ancho completo del carrusel */
+    max-width: 600px; /* Ancho máximo del carrusel */
+    /*margin: auto; /* Centrar el carrusel horizontalmente y agregar margen superior e inferior */
+    overflow: hidden; /* Ocultar contenido que se desborda fuera del carrusel */
+    border: 2px solid #C9D3DD; /* Borde del carrusel de 2px con color específico */
+    border-radius: 10px; /* Bordes redondeados del carrusel */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Sombra para dar un efecto de elevación */
+}
+
+.carusel-images {
+    display: flex; /* Usar flexbox para alinear imágenes en una fila */
+}
+
+.carusel-images img {
+    width: 100%; /* Ancho de cada imagen igual al del carrusel */
+    height: auto; /* Altura automática para mantener la proporción de la imagen */
+    border-right: 2px solid #fff; /* Borde derecho de 2px entre las imágenes */
+}
+
+.carusel-boton {
+    position: absolute; /* Posicionamiento absoluto respecto al carrusel */
+    top: 50%; /* Centrar verticalmente el botón dentro del carrusel */
+    transform: translateY(-50%); /* Ajustar la posición para centrar exactamente el botón */
+    background-color: rgba(0, 0, 0, 0.1); /* Fondo semitransparente para el botón */
+    border: none; /* Sin borde alrededor del botón */
+    color: #C9D3DD; /* Color del texto del botón */
+    padding: 1rem; /* Espaciado interno del botón */
+    cursor: pointer; /* Cambiar el cursor a un puntero al pasar sobre el botón */
+    font-size: 2rem;
+    border-radius: 10px; /* Bordes redondeados del carrusel */
+    z-index: 10; /* Dale un z-index alto */
+}
+
+.carusel-boton.prev {
+    left: 0; /* Posicionar el botón "prev" en el lado izquierdo del carrusel */
+}
+
+.carusel-boton.next {
+    right: 0; /* Posicionar el botón "next" en el lado derecho del carrusel */
+}
+
+.carusel-boton.prev:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.carusel-boton.next:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+/* DIV NOTIFI Y CARUSEL */
+
+#caruselnotifi {
+    display: flex;
+    padding: 5rem;
+    justify-content: space-around;
+}
+
+/* VENTANA DE NOTIFICACIONES */
+
+.ventanotifi {
+    width: 350px; /* Ancho de la ventana de notificaciones */
+    padding: 1rem; /* Espaciado interno de la ventana */
+    border: 1px solid #C9D3DD; /* Borde de la ventana de notificaciones */
+    border-radius: 10px; /* Bordes redondeados */
+    background-color: white; /* Color de fondo de la ventana de notificaciones */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para dar un efecto de elevación */
+}
+
+.ventanotifi h2 {
+    margin-top: 0; /* Eliminar el margen superior del título */
+    color: #033076; /* Color del texto del título */
+}
+
+.ventanotifi p {
+    margin: 1rem 0; /* Margen superior e inferior para el párrafo */
+    color: #333; /* Color del texto del párrafo */
+    font-weight: 1000;          /* Negrilla*/
+}
+
+#botonrevis {
+    display: block; /* Mostrar el botón como un bloque */
+    width: 50%; /* Ancho completo del botón */
+    padding: 0.5rem; /* Espaciado interno del botón */
+    border: none; /* Sin borde alrededor del botón */
+    border-radius: 8px; /* Bordes redondeados del botón */
+    background-color: #033076; /* Color de fondo del botón */
+    color: #fff; /* Color del texto del botón */
+    cursor: pointer; /* Cambiar el cursor a un puntero al pasar sobre el botón */
+    text-align: center; /* Centrar el texto dentro del botón */
+    font-weight: 1000;          /* Negrilla*/
+}
+
+#botonrevis:hover {
+    background-color: #1464F6; /* Cambiar el color de fondo al pasar el ratón sobre el botón */
+}
+
+#navnotifi {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+#navnotifi a {
+    text-decoration: none;    /* Elimina el subrayado de los enlaces */
+    color: #333;              /* Color del texto de los enlaces */
+    text-align: left;
+    padding: 1rem;           /* Espacio interno */
+    padding-left: 0;
+}
+
+#navnotifi a:hover {
+    color: #1464F6;           /* Color de los enlaces al pasar el ratón */
+    font-weight: 1000;          /* Negrilla*/
+}
+
+/*FIN DE PAGINA DE INICIO*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* STYLES DEISI */
+
+.registro-container .row {
+    display: flex; /* Activa Flexbox */
+    gap: 0; /* Asegura que no haya espacio entre las columnas si usas g-0 */
+}
+
+.registro-container .card-custom {
+    border: 2px solid #033076; /* Azul institucional */
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #f5f5f5; /* Fondo gris claro */
+    height: 100%; /* Mantiene la misma altura */
+}
+
+.registro-container .card-custom h5 {
+    color: #033076 !important; /* Azul institucional */
+    font-weight: bold;
+}
+
+.registro-container .card-custom p {
+    color: #033076 !important; /* Azul institucional */
+}
+
+.registro-container .col-md-7, .col-md-5 {
+    display: flex;
+    flex-direction: column; /* Organiza el contenido verticalmente */
+}
+
+.registro-container .btn-save {
+    background-color: #033076;
+    color: white;
+}
+
+.registro-container .profile-pic-container {
+    border: 2px dashed #ccc;
+    text-align: center;
+    padding: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.registro-container .profile-pic-container:hover {
+    border-color: #033076;
+}
+
+.registro-container .input-group {
+    flex-wrap: nowrap; /* Asegura que los elementos no se desplacen */
+}
+
+@media (max-width: 768px) {
+    .registro-container    .input-group {
+        flex-wrap: wrap; /* Permite que los elementos se ajusten en pantallas pequeñas */
+    }
+}

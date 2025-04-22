@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Permisos</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <!--enlace con biblioteca de iconos de bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-calendar/css/calendar.min.css" rel="stylesheet">
+    <!-- Estilos CSS para bootstrap-calendar -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!--boostrap-->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!--tipo de fuete google-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <!--enlace con fuente de letra estilo montserrat-->
+
+    <link rel="stylesheet" href="../navstyle.css">
+    <!--estilos del navegador-->
+    <link rel="stylesheet" href="../main.css">
+    <!--estilos editados del boostrap-->
+    <link rel="icon" type="image/x-icon"    href="logo/logimag.png">
+
+</head>
+
+<body>
+
+    <!--NAVEGAVOR ICONOS Y LOGO-->
+    <div id="navbar"></div>
+    <script src="nav.js"></script>
+
+    <!--FIN NAVEGAVOR ICONOS Y LOGO-->
+
+    <div class="row d-flex justify-content-center">
+        <div
+            class="col-md-11 p-3 d-flex justify-content-between aling-items-center border-bottom border-gris-oscuro border-2">
+            <h2 class=" mt-1 text-success fw-semibold" id="tituloRegistro">Accesos</h2>
+            <button class="btn btn-secondary " onclick="window.location.href='inicio.html'">Inicio</button>
+            <!--encabezado, tamaño (h2)=32px, para titulos, color verde, peso de fuente (semibold)-->
+        </div>
+    </div>
+
+
+    <div class="container-fluid mt-5 d-flex justify-content-center">
+        <div class="row">
+            <!-- Panel izquierdo: Lista de notificaciones -->
+            <div class=" col-md-12 w-auto bg-gris-claro p-4 border border-2 border-azul-institucional rounded-3 ">
+
+                <h5 class="text-azul-institucional fw-semibold">Permisos</h5>
+                <p class="text-azul-institucional"> Active o desactive los permisos a los demas empleados</p>
+
+                <!-- Etiqueta y desplegable para el  tipo de cargo-->
+                <div class="row mb-3 d-flex justify-content-center">
+                    <div class="col-md-6">
+                        <label for="tipo-cargo" class="form-label text-azul-institucional">Tipo de
+                            cargo:</label>
+                        <select id="tipo-cargo" class="form-select text-azul-institucional">
+                            <option value="">Seleccione...</option>
+                            <option value="opcion1">Auxiliar</option>
+                            <option value="opcion2">Director</option>
+                            <option value="opcion3">Gerente</option>
+                            <option value="opcion3">Inspector</option>
+                            <option value="opcion3">Supervisor</option>
+                        </select>
+                    </div>
+
+                    <!-- Etiqueta y desplegable para el Empleado/a -->
+                    <div class="col-md-6">
+                        <label for="Empleado" class="form-label text-azul-institucional">Empleado/a:</label>
+                        <select id="Empleado" class="form-select text-azul-institucional">
+                            <option value="">Seleccione...</option>
+                            <option value="opcion1">Opción 1</option>
+                            <option value="opcion2">Opción 2</option>
+                            <option value="opcion3">Opción 3</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div
+                        class=" col-md-12  w-100 list-group p-2  bg-white border-2 border border-gris-oscuro text-azul-institucional">
+
+                        <div
+                            class="form-check form-switch  d-flex justify-content-between  btn-gris-claro list-group-item list-group-item-action text-azul-institucional">
+                            <label class="form-check-label flex-grow-1 text-truncate" for="toggleSwitch1">Agendar
+                                inspecciones</label>
+                            <input class="form-check-input" type="checkbox" id="toggleSwitch1">
+                        </div>
+
+                        <div
+                            class="form-check form-switch  d-flex justify-content-between  btn-gris-claro list-group-item list-group-item-action text-azul-institucional">
+                            <label class="form-check-label flex-grow-1 text-truncate" for="toggleSwitch2">Consultar
+                                inspecciones agendadas</label>
+                            <input class="form-check-input" type="checkbox" id="toggleSwitch2">
+                        </div>
+
+                        <div
+                            class="form-check form-switch  d-flex justify-content-between  btn-gris-claro list-group-item list-group-item-action text-azul-institucional">
+                            <label class="form-check-label flex-grow-1 text-truncate" for="toggleSwitch3">Revisar y
+                                aprobar inspecciones</label>
+                            <input class="form-check-input" type="checkbox" id="toggleSwitch3">
+                        </div>
+
+                        <div
+                            class="form-check form-switch  d-flex justify-content-between  btn-gris-claro list-group-item list-group-item-action text-azul-institucional">
+                            <label class="form-check-label flex-grow-1 text-truncate" for="toggleSwitch4">Consultar
+                                inspecciones pasadas</label>
+                            <input class="form-check-input" type="checkbox" id="toggleSwitch4">
+                        </div>
+
+                        <div
+                            class="form-check form-switch  d-flex justify-content-between  btn-gris-claro list-group-item list-group-item-action text-azul-institucional">
+                            <label class="form-check-label flex-grow-1 text-truncate" for="toggleSwitch5">Informacion
+                                empleados</label>
+                            <input class="form-check-input" type="checkbox" id="toggleSwitch5">
+                        </div>
+
+                        <div
+                            class="form-check form-switch  d-flex justify-content-between  btn-gris-claro list-group-item list-group-item-action text-azul-institucional">
+                            <label class="form-check-label flex-grow-1 text-truncate" for="toggleSwitch6">Permisos de la
+                                app web</label>
+                            <input class="form-check-input" type="checkbox" id="toggleSwitch6">
+                        </div>
+
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-azul-institucional text-white mt-5 ">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class=" mt-5  p-2 border-top border-2 text-center text-azul-institucional">
+        © 2024 - GasInspect - Derechos reservados.
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

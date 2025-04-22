@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingreso de nuevo empleado</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"><!-- Banderas -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet"><!-- Iconos -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"><!-- Fuente Montserrat -->
+    <link rel="stylesheet" href="main.css"><!-- Estilos personalizados -->
+    <link rel="stylesheet" href="../navstyle.css"><!--navegador -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!--favicon-->
+    <link rel="icon" type="image/x-icon"    href="logo/logimag.png">
+</head>
+
+<body>
+<!--NAVEGAVOR ICONOS Y LOGO-->
+<div id="navbar"></div>
+<script src="nav.js"></script>
+
+<!--FIN NAVEGAVOR ICONOS Y LOGO-->
+<!---------------------------------encabezado y boton -------->
+<div class="row d-flex justify-content-center">
+    <div
+        class="col-md-11 p-3 d-flex justify-content-between aling-items-center border-bottom border-gris-oscuro border-2">
+        <h2 class=" mt-1 text-success fw-semibold" id="tituloRegistro">Accesos</h2>
+        <button class="btn btn-secondary " onclick="window.location.href='inicio.html'">Inicio</button>
+        <!--encabezado, tamaño (h2)=32px, para titulos, color verde, peso de fuente (semibold)-->
+    </div>
+</div>
+
+<div class="registro-container"><!--nombre para mi css-->
+    <div class="container">
+
+        <div class="row mt-3 g-0">
+            <!-- Columna de Ingreso de nuevo empleado -->
+            <div class="col-md-7">
+                <div class="card-custom">
+                    <h5>Ingreso de nuevo empleado</h5>
+                    <p>Llene los datos del nuevo usuario.</p>
+                    <form>
+                        <!-- Nombre completo y Email -->
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Nombre completo</label>
+                                <input type="text" class="form-control" placeholder="Escribe el nombre completo" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" placeholder="Correo electrónico" required>
+                            </div>
+                        </div>
+                        <!-- Teléfono e Identificación -->
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="telefono" class="form-label">Teléfono</label>
+                                <div class="input-group">
+                                    <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" id="countryButton">
+                                        <span class="flag-icon flag-icon-co"></span> <!-- Bandera de Colombia -->
+                                    </button>
+                                    <ul class="dropdown-menu" id="countryMenu">
+                                        <li><a class="dropdown-item" href="#" onclick="updateCountry('+57', 'co')"><span class="flag-icon flag-icon-co"></span> Colombia</a></li>
+                                        <li><a class="dropdown-item" href="#" onclick="updateCountry('+58', 've')"><span class="flag-icon flag-icon-ve"></span> Venezuela</a></li>
+                                        <li><a class="dropdown-item" href="#" onclick="updateCountry('+55', 'br')"><span class="flag-icon flag-icon-br"></span> Brasil</a></li>
+                                    </ul>
+                                    <input type="tel" class="form-control" id="telefono" placeholder="Número de teléfono" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="identificacion" class="form-label">Identificación</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="identificacion" placeholder="Número de identificación" required>
+                                    <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Dependencia y Adjuntar Documentos -->
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="dependencia" class="form-label">Dependencia</label>
+                                <div class="input-group">
+                                    <button type="button" class="btn btn-outline-secondary d-flex align-items-center justify-content-between w-100" data-bs-toggle="dropdown" aria-expanded="false" id="dependenciaButton">
+                                        <span class="dropdown-arrow me-2">&#9660;</span> <!-- Flecha manual a la izquierda -->
+                                        <span class="flex-grow-1 text-center">Dependencia o Cargo</span> <!-- Texto centrado -->
+                                        <i class="bi bi-lock ms-2"></i> <!-- Ícono de candado a la derecha -->
+                                    </button>
+                                    <ul class="dropdown-menu" id="dependenciaMenu">
+                                        <li><a class="dropdown-item" href="#" onclick="updateDependencia('Departamento A')">Gerente</a></li>
+                                        <li><a class="dropdown-item" href="#" onclick="updateDependencia('Departamento B')">Director Técnico</a></li>
+                                        <li><a class="dropdown-item" href="#" onclick="updateDependencia('Departamento C')">Supervisor</a></li>
+                                        <li><a class="dropdown-item" href="#" onclick="updateDependencia('Departamento C')">Aux. Administrativa</a></li>
+                                        <li><a class="dropdown-item" href="#" onclick="updateDependencia('Departamento C')">Inspector</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Adjuntar documentos</label>
+                                <div class="input-group">
+                                    <input type="file" id="fileUpload" class="d-none" accept=".pdf" multiple>
+                                    <label for="fileUpload" class="btn btn-outline-secondary">
+                                        <i class="bi bi-paperclip"></i> <!-- Ícono de adjuntar -->
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <!-- Fecha de ingreso y Duración del Contrato -->
+                        <div class="row mb-3">
+                        
+                            <div class="col-md-6">
+                                <br>
+                                <label class="form-label">Fecha de ingreso</label>
+                                    <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-calendar-date"></i></span>
+                                    <input type="text" class="form-control" placeholder="dd/mm/aaaa" onfocus="(this.type='date')" onblur="(this.type='text')" required>
+                                    </div>
+                            </div>
+                         
+                            <div class="col-md-6">
+                                <label class="form-label">Duración del contrato</label>
+                                <div class="d-flex align-items-center">
+                                    <input type="text" class="form-control" placeholder="Cantidad de meses" style="width: 150px; font-size: 12px;" id="mesesContrato" required>
+                                    <div class="ms-3">
+                                        <div class="form-check" style="font-size: 12px;">
+                                            <input class="form-check-input" type="radio" name="tipoContrato" id="contratoIndefinido">
+                                            <label class="form-check-label" for="contratoIndefinido">
+                                             Indefinido
+                                            </label>
+                                        </div>
+                                        <div class="form-check" style="font-size: 12px;">
+                                            <input class="form-check-input" type="radio" name="tipoContrato" id="contratoDefinido">
+                                            <label class="form-check-label" for="contratoDefinido">
+                                             Definido
+                                            </label>
+                                        </div>
+                                        <div class="form-check" style="font-size: 12px;">
+                                            <input class="form-check-input" type="radio" name="tipoContrato" id="contratoServicios">
+                                            <label class="form-check-label" for="contratoServicios">
+                                             Prestación de servicios
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Botón Guardar -->
+                        <div class="row mb-3">
+                            <div class="col-md-12 text-end">
+                                <button type="submit" class="btn btn-save btn-sm">Guardar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- seccion  de Foto de Perfil -->
+            <div class="col-md-5">
+                <div class="card-custom">
+                    <h5>Foto de perfil</h5>
+                    <p>Carga tu foto de perfil</p>
+                    <div class="row justify-content-center align-items-center" style="height: 100%; margin-top: -15px;">
+                        <div class="col-md-12 text-center">
+                            <div class="profile-pic-container" style="height: 80%; position: relative; display: flex; justify-content: center; align-items: center; flex-direction: column; overflow: hidden; border-radius: 10px;">
+                                <i id="placeholderIcon" class="bi bi-image display-1" style="color: rgba(10, 0, 124, 0.5);"></i>
+                                <img id="previewImage" src="#" alt="Imagen de perfil" style="width: 100%; height: 100%; object-fit: cover; display: none;">
+                                <p id="importText" style="position: absolute; bottom: 10px; color: rgba(10, 0, 124, 0.5); font-weight: bold;">Importar imagen</p>
+                                <input type="file" id="fileInput" accept="image/*" capture="environment" style="opacity: 0; position: absolute; width: 100%; height: 100%; cursor: pointer;" onchange="loadImage(event)">
+                            </div>
+                            <button type="button" id="removeButton" class="btn btn-outline-danger btn-sm mt-2" style="display: none;" onclick="removeImage()">Eliminar imagen</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<footer class=" mt-5  p-2 border-top border-2 text-center text-azul-institucional">
+    © 2024 - GasInspect - Derechos reservados.
+</footer>
+</body>
+</html>

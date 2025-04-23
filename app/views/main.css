@@ -1,6 +1,3 @@
-/*NAVEGADOR*/
-
-
 #header {
     background-color: #033076; /* Color de fondo actualizado */
     height: 40px;              /* Altura de la barra */
@@ -140,7 +137,6 @@ body {
     background: #1464F6;
     border-color: #1464F6;
 }
-
 
 
 
@@ -577,4 +573,864 @@ body {
     .registro-container    .input-group {
         flex-wrap: wrap; /* Permite que los elementos se ajusten en pantallas pequeñas */
     }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*------------------------------ESTILOS RUBEN--------------------------------*/
+
+
+                                                         /*--------ESTILOS PARA TODAS LAS PANTALLAS--------*/
+
+/* estilos para todo el cuerpo del documento */
+#mod-agenda,
+.mod-calculadora,
+.mod-correoInterno,
+.mod-registroInspeccion,
+.mod-registroUsuario {/*cuerpo de la pagina*/
+    font-size: 15px;/*tamaño de fuente para todo el texto de la ventana*/
+    color: #033076;/*color de fuente*/
+}
+/* Establece el tamaño de la fuente a 12px en todos los parrafo*/
+.mod-agenda p,
+.mod-calculadora p,
+.mod-correoInterno p,
+.mod-registroInspeccion p,
+.mod-registroUsuario p {/*parrafo*/
+    font-size: 14px;/*tamaño de fuente*/ 
+}
+
+/*estilos para los iconos(en general,interacción,click)*/
+.mod-agenda i,
+.mod-calculadora i,
+.mod-correoInterno i,
+.mod-registroInspeccion i,
+.mod-registroUsuario i {
+    color: #033076;/*color a primera vista en un icono*/ 
+}
+.mod-agenda i:hover,
+.mod-calculadora i:hover,
+.mod-correoInterno i:hover,
+.mod-registroInspeccion i:hover,
+.mod-registroUsuario i:hover {
+    color: #0d6efd; /* color al interactuar con el botón */
+}
+
+.mod-agenda i:active,
+.mod-calculadora i:active,
+.mod-correoInterno i:active,
+.mod-registroInspeccion i:active,
+.mod-registroUsuario i:active {
+    color: #033076; /* color al dar click */
+}
+
+
+
+
+                                                           /*----------ESTILOS REGISTRO DE USUARIO---------------*/
+ /*estilo de la primer barra*/                                                          
+#rowazul {
+    height: 40px;
+
+/*estilos segunda barra gris*/
+}                                                          
+.gris {
+    background-color: #EFF0F4;/*color de fondo*/
+    width: 100%;/*largor*/
+    max-width: 100%;/*maxima ocupaciíon de su contenido*/
+    display: flex;/*caja flexible a los cambios de tamaño*/
+    align-items: center;/*alineación vertical centrada*/
+    justify-content: end; /*alineacion horizontal al final derecho*/
+    border-bottom: 2px solid #0d6efd;/*borde abajo color azul*/
+}
+
+/*estilos barra de navegacion*/
+.navbar-inicio {
+    display: flex;/*caja flexible*/
+    align-items: center;/*alineacion centrada de sus objetos*/
+    height: 40px;/*altura*/
+}
+
+/*estilos container de enlaces*/
+.navbar-menu {
+    list-style: none;/*estilo de letra, ninguno*/
+    display: flex;/*caja flexible*/
+    gap: 40px;/*espacio entrre los elementos*/
+    margin: 0;/*margen*/
+    padding: 0 20px;/*margen al interior del container*/
+}
+
+/*estilos de los items de navbar*/
+.navbar-menu li {
+    display: flex;
+}
+
+/*estilo de los enlaces de navbar*/
+.navbar-menu li a {
+    font-size: 20px;/*tamaño de letra*/
+    color: #30B32E;
+    text-decoration: none;/*decoracion de letra, ninguna*/
+}
+
+
+
+
+#rowAcceder {
+    border-bottom: 2px solid #747373; /* Cambia #000 por el color que desees */
+}
+
+/*columna que encierra el container de inicio de sesión*/
+#colAcceder {
+    background-color: white;/*color de fondo*/
+    display: flex;/*un container flexible o flexbox*/
+    flex-direction: column;/*alinea los elementos internos en columna*/
+    align-items: center;/*centra verticalmente los elementos*/
+    justify-content: center;/*centra horizontalmente los elementos*/
+    margin-top: 5px;/*espacio entre el objeto y lo que haya arriba*/
+}
+
+#titleA {/*titulo acceder, color verde*/
+    color: #30B32E;
+}
+
+/*container que contiene los elementos del formulario*/
+.form-contenido {
+    width: 100%; /*usa todo el espacio del container donde esté  ubicado*/ 
+    max-width: 450px;/*el tamaño horizontal del elemento*/
+    border-radius: 5px;/*radio redondado a 5 unidades*/
+    background: #EFF0F4;/*color gris claro*/
+}
+
+/*container para agrupar los elementos del formulario*/
+#grupoFormularios {
+    display: flex;/*un container flexible o flexbox*/
+    flex-direction: column;/*alinea los placeholders en forma de columna*/
+}
+/*container del icono*/
+#colAcceder .input-icon {
+    position: relative;/*permite que su posición se ubique a lado del placeholder*/
+    width: 100%;/*usa todo el espacio del container donde esté  ubicado*/
+    display: flex;/*un container flexible o flexbox que alinea los elementos juntos en su agrupacion determinada*/
+    align-items: center;/*centra verticalmente los elementos*/
+    gap: 8px;/* Agrega espacio entre los elementos */
+}
+
+/*estilos de los elementos del placeholder*/
+#colAcceder .input-field input::placeholder {
+    color: gray;/*color del texto representativo*/
+}
+
+#colAcceder .btn-field {
+    display: flex; /* Usamos flexbox para alinear los botones */
+    flex-direction: column;
+    justify-content: center; /* Centra los botones horizontalmente */
+    gap: 20px; /* Agrega espacio entre los botones */
+}
+
+/*estilos para el boton ingresar*/
+ #btnIngresar {
+    background-color: #033076;/*color de fondo*/
+    color: white;/*color del texto*/
+}
+#btnIngresar:hover {/*estilo al interactuar con el boton*/
+    background-color: #0d6efd;
+}
+#btnIngresar:active {/*estilos al accionar el boton*/
+    background-color:#033076;
+}
+
+/*estilos para el boton registrarse*/
+#btnReg {
+    background-color: white;/*color de fondo*/
+    color: #033076;/*color del texto*/
+    border: 1px solid #033076;/*borde del boton*/
+}
+#btnReg:hover {/*estilo al interactuar con el boton*/
+    background-color: #0d6efd;
+    color: white;
+    border: 1px solid white;
+}
+#btnReg:active {/*estilos al accionar el boton*/
+    background-color:#033076;
+}
+
+#rowContactenos {
+    display: flex;/* container flexible */
+    justify-content: space-between; /* forma espacio entre las 03 columnas*/
+    width: 100%;/* Asegura que ocupe todo el ancho disponible*/
+}
+
+/*estilos de los placeholders de contactenos*/
+#camposContacto {
+    display: flex;/*caja flexible*/
+    flex-direction: column;/*organizacion en columna*/
+    align-items: left;/*alineacion vertical hacia la izquierda*/
+    max-width: 70%;/*ocupacion del interior horizontal de los elenmentos del container*/
+    gap: 20px;/*espaciado entre los elemenstos*/
+}
+
+/*estilos de los elementos del placeholder*/
+#colContactenos .input-field input::placeholder {
+    color: gray;/*color del texto representativo*/
+}
+/*estilo boton enviar de contactenos*/
+#colContactenos .btn {
+    background-color: #033076;
+    border: none;
+    color: white;
+}
+/*estilos del boton enviar al interactuar con el mouse*/
+#colContactenos .btn:hover {
+    background-color: #0d6efd;
+}
+/*estilos al accionar el click*/
+#colContactenos .btn:active {
+    background-color:#033076;
+}
+/*estilos del coltainer del mapa*/
+#colMapa {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+/*estilos para el pie de pagina*/
+footer {
+    background-color: #EFF0F4; /* Fondo claro para el pie de página */
+    text-align: center;
+}
+
+/*estilos para el boton de playstore*/
+.playstore-button {
+    display: inline-block;
+    background-color: #34A853; /* Play Store's green color */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+    margin-bottom: 20px;
+}
+
+/*estilos oara el icno de playstore*/
+.playstore-button i {
+    margin-right: 10px;
+    font-size: 24px;
+}
+
+
+/*estilos de interaccion boton playstore*/
+.playstore-button:hover {
+    background-color: #2b8a3e;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                           /*----------ESTILOS CORREO INTERNO---------------*/
+
+
+/* Estilo para el contenedor central de la pantalla*/
+#containerCorreo {
+    max-width: 600px;
+    margin-top: 20px;
+    background-color: #EFF0F4;
+    border: 1px solid #033076;
+    border-radius: 5px;
+}
+
+/* Estilo para el boton (enviar) ubicado dentro del conetedor de correo*/
+#containerCorreo .btn {
+    background-color: #033076;
+    border: none;
+}
+#containerCorreo .btn:hover {
+    background-color: #0d6efd;
+}
+#containerCorreo .btn:active {
+    background-color:#033076;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                            /*----------ESTILOS REGISTRO DE INSPECCIÓN---------------*/
+
+#titulo {
+    margin-left: 2%; /* Ajusta este valor según tus necesidades */      
+}
+
+
+/*--------CONTAINER DE FORMULARIOS---------*/
+
+/*primer columna*/
+#fila, #columnaRegistro {
+    padding: 5rem; /*espacio entre el margen de un contenedor y sus elementos internos*/
+    background-color: #EFF0F4;/*color de fondo gris claro*/
+    border: 0.1px solid #033076;/*da borde a la columna 1*/
+    border-top-left-radius: 5px;/* el borde izquierdo-arriba de la columna es redondeado en 5px*/
+    border-bottom-left-radius: 5px;/*el borde izquierdo-abajo es redondeado en 5px*/
+}
+
+/*segunda columna*/
+#columnaCalendario { /*enlace para editar los dos contenedores de la fila*/
+    padding: 5rem; /*espacio entre el margen de un contenedor y sus elementos internos*/
+    background-color: #EFF0F4;/*color de fondo gris claro*/
+    border: 0.1px solid #033076;/*da borde a la columna 2*/
+    border-end-end-radius: 5px;/* el borde derecho-abajo de la columna es redondeado en 5px*/
+    border-top-right-radius: 5px;/* el borde derecho-arriba de la columna es redondeado en 5px*/
+}
+
+
+@media (max-width: 768px) {
+    .calendarioRegistro {
+      padding: 10px; /* Reduce el padding en pantallas pequeñas */
+    }
+    .day, .date {
+      font-size: 14px; /* Disminuye el tamaño de fuente */
+    }
+  }
+  
+/*cestilos calendario*/
+#calendarioRegistro {
+display: flex;/*un contenedor flexible para que sus elementos se acoplen de forma responsiva*/
+flex-direction: column;/*columna flexible para apilar elementos uno bajo el otro*/
+padding: 2px;/*espacio entre el margen de un contenedor y sus elementos internos*/
+background: #0d6efd;/*color de fondo*/
+border-radius: 7px;/* el borde del calendario redondeado en 7px*/
+box-shadow: 0 0 5px rgba(0,0,0,0.3);/*sombra detras del calendario*/
+}
+
+#headerCalendarioRegistro {/*encabezado del calendario*/
+    display: flex;/*flexible segun el tamaño de pantalla*/
+    justify-content: space-between;/*espacio entre los elementos dentro del header, distribuyendolos por igual horizontalmente*/
+    align-items: center;/*centra verticalmente los elementos*/
+    padding: 10px;/*margen interno entre el contenedor y los elementos en su interior*/
+    background-color: #033076;/*color de fondo*/
+    border-radius: 6px;/* el borde del calendario redondeado en 6px*/
+    margin-top: 1px;/*margen hacia arriba*/
+    
+}
+
+.monthYear {/*texto del mes y año del calendario*/
+    text-align: center;/*centra verticalmente los elementos*/
+    font-weight: 800;/*tamaño de la fuente de la letra*/
+    width: 150px;/*tamaño del contenedor de la letra*/
+    color: white;/*color del texto dentro del header*/
+
+}
+
+.header button {/*botones del encabezado*/
+    display: flex;/*flexibles segun el tamaño de panrtalla*/
+    align-items: center;/*centra verticalmente los elementos*/
+    justify-content: center;/*espacio entre los elementos dentro del header, distribuyendolos por igual horizontalmente*/
+    border: none;/*sin borde pronunciado*/
+    border-radius: 15%;/*borde redondeado en un 15%*/
+    background: #fff;/*color de fondo*/
+    cursor: pointer;/*efecto que logra mostrar una mano señalando al objeto*/
+    width: 30px;/*tamaño horizontal del boton*/
+    height: 30px;/*tamaño vertical del boton*/
+    box-shadow: 0 0 4px rgba(0,0,0,0.2);/*sombra detras del boton*/
+}
+
+/*estilos para botones de previo y siguiente(en general,interacción,click)*/
+#prevBtn:active {/*estilo al clickear un boton*/
+    background-color: #c6c7c7;
+    color: white;
+}
+
+#nextBtn:active {/*estilo al clickear un boton*/
+    background-color: #c6c7c7;
+    color: white;
+}
+
+
+
+.days {/*cuadricula para acomodar los dias de la semana*/
+    display: grid;/*definición de una cuadricula tipo grid*/
+    grid-template-columns: repeat(7,1fr);/*esta cuadricula contiene 7 divisiones y cada una mide 1 unidad*/
+}
+
+.day {/*configuracion de cada uno de los elementos dentro de la cuadricula grid*/
+    text-align: center;/*centra verticalmente los elementos*/
+    padding: 2px;/*espacio entre los elementos dentro del header, distribuyendolos por igual horizontalmente*/
+    color: white;/*color de letra*/
+    font-weight: 800;/*tamaño de letra*/
+}
+
+.dates {/*estilo del grupo de dias del mes*/
+    display: grid;/*definición de una cuadricula tipo grid*/
+    grid-template-columns: repeat(7,1fr);/*esta cuadricula contiene 7 divisiones y cada una mide 1 unidad*/
+    gap: 1px;/*espacio al rededor de cada unidad*/
+    color: white;/*color de los numeros*/
+}
+
+.date {/*estilo de cada uno de los dias del mes*/
+    display: flex;/*flexible segun el tamaño de pantalla*/
+    align-items: center;/*centra verticalmente los elementos*/
+    justify-content: center;/*espacio entre los elementos dentro del header, distribuyendolos por igual horizontalmente*/
+    text-align: center;/*centra verticalmente los elementos*/
+    padding: 10px;/*margen interno entre el contenedor y los elementos en su interior*/
+    margin: auto;/*centra horizontalmente los elementos*/
+    cursor: pointer;/*efecto que logra mostrar una mano señalando al objeto*/
+    font-weight: 530;/*tamaño de la fuente de la letra*/
+    border-radius: 20%;/*borde redondeado en un 50%*/
+    width: 33px;/*tamaño horizontal de los elementos*/
+    height: 30px;/*tamaño vertical de los elementos*/
+    transition: 0.2s;
+}
+
+/*estilos para los botones activos del calendario, osea las fechas del mes*/
+.date:hover {/*estilo en interaccion con botones*/
+    background: white;/*color de fondo*/
+    color: #0d6efd;/*color de letra*/
+}
+
+.date:active {/*estilo al clickear un boton*/
+    background: #033076;/*color de fondo*/
+    color: white;/*color de letra*/
+}
+
+/*estilos para los botones inacactivos del calendario, osea las fechas que no son del mes*/
+.date.inactive {/*estilo al dejar de tocar un boton*/
+    color: #8eb4b4;/*color de letra*/
+
+}
+
+.date.inactive:hover {/*estilo en interaccion con botones*/
+    background: white;/*color de fondo*/
+    color: #0d6efd;/*color de letra*/
+}
+
+.date.inactive:active {/*estilo en interaccion con botones*/
+    background: #033076;/*color de fondo*/
+    color: white;/*color de letra*/
+}
+
+
+
+#botonSiguiente {/*estilo del boton en apariencia*/
+    background-color: #033076;
+    color: white;
+}
+#botonSiguiente:hover {/*estilo en interaccion con botones*/
+    background-color: #0d6efd;
+    color: white;
+}
+
+#botonSiguiente:active {/*estilo en interaccion con botones*/
+    background-color: #033076;
+    color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                       /*----------------ESTILOS AGENDA----------------------*/
+
+
+/*---PRIMER CONTAINER GRIS---*/
+
+/*primer columna gris del container central*/
+#columnaAgenda {
+    padding: 2rem; /*espacio entre el margen de un contenedor y sus elementos internos*/
+    background-color: #EFF0F4;/*color de fondo gris claro*/
+    border: 0.1px solid #033076;/*da borde a la columna 1*/
+    border-top-left-radius: 5px;/* el borde izquierdo-arriba de la columna es redondeado en 5px*/
+    border-bottom-left-radius: 5px;/*el borde izquierdo-abajo es redondeado en 5px*/
+    
+}  
+
+@media (max-width: 90%) {
+    .calendarioAgenda {
+      padding: 10px; /* Reduce el padding en pantallas pequeñas */
+    }
+    .day, .date {
+      font-size: 14px; /* Disminuye el tamaño de fuente */
+    }
+  }
+
+/*estilos del container que contiene las fechas*/
+#calendarioAgenda {
+display: flex;/*un contenedor flexible para que sus elementos se acoplen de forma responsiva*/
+width: 100%;
+flex-direction: column;/*columna flexible para apilar elementos uno bajo el otro*/
+padding: 2px;/*espacio entre el margen de un contenedor y sus elementos internos*/
+background: #0d6efd;/*color de fondo*/
+border-radius: 7px;/* el borde del calendario redondeado en 7px*/
+box-shadow: 0 0 5px rgba(0,0,0,0.3);/*sombra detras del calendario*/
+}
+
+#headerCalendarioAgenda {/*encabezado del calendario*/
+    display: flex;/*flexible segun el tamaño de pantalla*/
+    justify-content: space-between;/*espacio entre los elementos dentro del header, distribuyendolos por igual horizontalmente*/
+    align-items: center;/*centra verticalmente los elementos*/
+    padding: 10px;/*margen interno entre el contenedor y los elementos en su interior*/
+    background-color: #033076;/*color de fondo*/
+    border-radius: 6px;/* el borde del calendario redondeado en 6px*/
+    margin-top: 1px;/*margen hacia arriba*/
+}
+
+#monthYearAgenda {/*texto del mes y año del calendario*/
+    text-align: center;/*centra verticalmente los elementos*/
+    font-weight: 600;/*tamaño de la fuente de la letra*/
+    width: 120px;/*tamaño del contenedor de la letra*/
+    color: white;/*color del texto dentro del header*/
+}
+
+#calendarioAgenda .header button {/*botones del encabezado*/
+    display: flex;/*flexibles segun el tamaño de panrtalla*/
+    align-items: center;/*centra verticalmente los elementos*/
+    justify-content: center;/*espacio entre los elementos dentro del header, distribuyendolos por igual horizontalmente*/
+    border: none;/*sin borde pronunciado*/
+    border-radius: 15%;/*borde redondeado en un 15%*/
+    cursor: pointer;/*efecto que logra mostrar una mano señalando al objeto*/
+    width: 30px;/*tamaño horizontal del boton*/
+    height: 30px;/*tamaño vertical del boton*/
+    box-shadow: 0 0 4px rgba(0,0,0,0.2);/*sombra detras del boton*/
+}
+
+/*estilos para botones de previo y siguiente(en general,interacción,click)*/
+#prevBtnAgenda:active {/*estilo al clickear un boton*/
+    background-color: #c6c7c7;
+    color: white;
+}
+
+#nextBtnAgenda:active {/*estilo al clickear un boton*/
+    background-color: #c6c7c7;
+    color: white;
+}
+
+
+
+.days {/*cuadricula para acomodar los dias de la semana*/
+    display: grid;/*definición de una cuadricula tipo grid*/
+    grid-template-columns: repeat(7,1fr);/*esta cuadricula contiene 7 divisiones y cada una mide 1 unidad*/
+}
+
+#calendarioAgenda .day {/*configuracion de cada uno de los elementos dentro de la cuadricula grid*/
+    text-align: center;/*centra verticalmente los elementos*/
+    padding: 2px;/*espacio entre los elementos dentro del header, distribuyendolos por igual horizontalmente*/
+    color: white;/*color de letra*/
+    font-weight: 500;/*tamaño de letra*/
+}
+
+.datesAgenda {/*estilo del grupo de dias del mes*/
+    display: grid;/*definición de una cuadricula tipo grid*/
+    grid-template-columns: repeat(7,1fr);/*esta cuadricula contiene 7 divisiones y cada una mide 1 unidad*/
+    gap: 1px;/*espacio al rededor de cada unidad*/
+    color: white;/*color de los numeros*/
+}
+
+#calendarioAgenda .date {/*estilo de cada uno de los dias del mes*/
+    display: flex;/*flexible segun el tamaño de pantalla*/
+    align-items: center;/*centra verticalmente los elementos*/
+    justify-content: center;/*espacio entre los elementos dentro del header, distribuyendolos por igual horizontalmente*/
+    text-align: center;/*centra verticalmente los elementos*/
+    padding: 10px;/*margen interno entre el contenedor y los elementos en su interior*/
+    margin: auto;/*centra horizontalmente los elementos*/
+    cursor: pointer;/*efecto que logra mostrar una mano señalando al objeto*/
+    font-weight: 330;/*tamaño de la fuente de la letra*/
+    border-radius: 20%;/*borde redondeado en un 50%*/
+    width: 30px;/*tamaño horizontal de los elementos*/
+    height: 30px;/*tamaño vertical de los elementos*/
+    transition: 0.2s;
+}
+
+/*estilos para los botones activos del calendario, osea las fechas del mes*/
+#calendarioAgenda .date:hover {/*estilo en interaccion con botones*/
+    background: white;/*color de fondo*/
+    color: #0d6efd;/*color de letra*/
+}
+
+#calendarioAgenda .date:active {/*estilo al clickear un boton*/
+    background: #033076;/*color de fondo*/
+    color: white;/*color de letra*/
+}
+
+/*estilos para los botones inacactivos del calendario, osea las fechas que no son del mes*/
+#calendarioAgenda .date.inactive {/*estilo al dejar de tocar un boton*/
+    color: #8eb4b4;/*color de letra*/
+
+}
+
+#calendarioAgenda .date.inactive:hover {/*estilo en interaccion con botones*/
+    background: white;/*color de fondo*/
+    color: #0d6efd;/*color de letra*/
+}
+
+#calendarioAgenda .date.inactive:active {/*estilo en interaccion con botones*/
+    background: #033076;/*color de fondo*/
+    color: white;/*color de letra*/
+}
+
+
+/*estilos para el boton registrar*/
+#botonRegistrar {/*estilo del boton en apariencia*/
+    background-color: #033076;
+    color: white;
+}
+#botonRegistrar:hover {/*estilo en interaccion con botones*/
+    background-color: #0d6efd;
+    color: white;
+}
+
+#botonRegistrar:active {/*estilo en interaccion con botones*/
+    background-color: #033076;
+    color: white;
+}
+
+
+
+/*---SEGUNDO CONTAINER GRIS---*/
+
+
+/*estilos de la segunda columna gris del container central*/
+#columnaCalendarioAgenda { /*enlace para editar los dos contenedores de la fila*/
+    background-color: #EFF0F4;/*color de fondo gris claro*/
+    border: 0.1px solid #033076;/*da borde a la columna 2*/
+    border-end-end-radius: 5px;/* el borde derecho-abajo de la columna es redondeado en 5px*/
+    border-top-right-radius: 5px;/* el borde derecho-arriba de la columna es redondeado en 5px*/
+}
+
+/* Estilos generales para el calendario */
+#calendar {
+    display: flex; /* Un contenedor flexible para que sus elementos se acoplen de forma responsiva */
+    padding: 10px; /* Espacio entre el margen de un contenedor y sus elementos internos */
+    background: #f4f4f4; /* Color de fondo del calendario */
+    border-radius: 7px; /* Bordes redondeados del calendario */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Sombra detrás del calendario */
+    color: #033076; /* Color del texto */
+    border: 0.2px solid #033076;
+    
+}
+
+/* Estilo del header del calendario */
+.fc-header-toolbar {
+    display: flex; /* Disposición flexible según el tamaño de pantalla */
+    align-items: center; /* Centrado vertical de los elementos */
+    margin-top: 3%; /* Márgenes hacia arriba */
+    font-size: 90%; /* Ajuste del tamaño de la fuente */
+}
+
+.fc-button {
+    background-color: #033076 !important;
+    border: 0.2px solid white !important;
+}
+
+
+/*estilos eevento de inspeccion agendada*/
+#agendada {
+    background-color: #75A9F9;
+}
+
+/*estilos eevento de inspeccion rechazada*/
+#rechazada {
+    background-color: #f48e8e;
+}
+
+/*estilos eevento de inspeccion en proceso*/
+#enProceso {
+    background-color: rgb(244, 211, 150);
+}
+
+/*estilos eevento de inspeccion completa*/
+#completa {
+    background-color: rgb(149, 223, 149);
+}
+
+/* Colores personalizados para cada tipo de evento */
+.fc-event[style*="background-color: lightblue"] {
+    background-color: #75A9F9 !important;
+    cursor: pointer;
+}
+
+.fc-event[style*="background-color: red"] {
+    background-color: #f48e8e !important;
+    cursor: pointer;
+}
+
+.fc-event[style*="background-color: orange"] {
+    background-color: rgb(244, 211, 150) !important;
+    cursor: pointer;
+}
+
+.fc-event[style*="background-color: green"] {
+    background-color: rgb(149, 223, 149) !important;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                /*----------------ESTILOS CALCULADORA----------------------*/
+
+
+
+/*estilos para la columna que alberga a la calculadora*/
+#fila, #columnaCalc {
+    background-color: #EFF0F4;/*color de fondo*/
+    border: 0.1px solid #033076;/*borde para el container*/
+    border-radius: 5px;/*borde redondeado*/
+    justify-content: center;/*alineacion horizontal centrada*/
+    align-items: center;/*alineacion vertical centrada*/
+    padding: 20px;/*margen interno de 20 unidades*/
+    
+}
+
+/*estilos de calculadora*/
+.calculator {
+    background-color: #fff;/*color de fondo*/
+    padding: 20px;
+    border: 1px solid #033076;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    width: 100%;   /* Asegura que ocupe todo el ancho disponible */
+    max-width: 350px;  /* Establece un ancho máximo */
+    height: 350px;/*tamnaño vertical*/
+    margin: 0 auto;
+    margin-top: 4px;/*margen para separarse de su vecino superior*/
+}
+
+/*estilos para el display*/
+#displayCalc {
+    width: 100%;
+    height: 50px;
+    text-align: right;
+    font-size: 30px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #033076;
+    border-radius: 5px;
+    background: #EFF0F4;
+}
+
+/*estilos para la cuadricula de los botones*/
+#buttonsCalc {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+/*estilos para los botones*/
+#buttonsCalc .btn {
+    padding: 6px;
+    font-size: 20px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;/*personalizacion del cursor*/
+    transition: background-color 0.3s;/*transiciones para los botones*/
+    color: #033076;
+}
+
+
+/*estilos para interaccion con los botones*/
+#buttonsCalc .btn:hover {
+    background: #0d6efd;
+    color: #EFF0F4;
+}
+
+/*estilos al accionar un boton*/
+#buttonsCalc .btn:active {
+    background: white;
+    color: #033076;
+}
+
+/*estilos para los botones operadores*/
+#buttonsCalc .operator {
+    background-color: #f4e864;
+    color: #033076;
+}
+
+/*estilos al interactuar con el boton operador*/
+#buttonsCalc .operator:hover {
+    background-color: #f57f17;
+}
+
+/*estilos al accionar el boton operador*/
+#buttonsCalc .operator:active {
+    background-color: white;
 }

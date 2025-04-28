@@ -8,7 +8,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"><!-- Banderas -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet"><!-- Iconos -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"><!-- Fuente Montserrat -->
-    <link rel="stylesheet" href="../views/main.css"><!-- Estilos personalizados -->>
+    <link rel="stylesheet" href="../views/main.css"><!-- Estilos personalizados -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!--favicon-->
     <link rel="icon" type="image/x-icon"    href="../views/logo/logimag.png">
@@ -34,22 +34,22 @@
                     <h5>Regístrate</h5>
                     <p>Registra tu información.
                     <br> El usuario y la contraseña serán enviados al correo registrado.</p>
-                    <form>
+                    <form id="registroForm">
                         <!-- Nombre completo y Email -->
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label class="form-label">Nombre completo</label>
-                                <input type="text" class="form-control" placeholder="Escribe tu nombre">
+                                <input type="text" class="form-control" placeholder="Escribe tu nombre" required>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Email</label>
-                                <input type="email" class="form-control" placeholder="Correo electrónico"required>
+                                <input type="email" class="form-control" placeholder="Correo electrónico" required>
                             </div>
                         </div>
                         <!-- Teléfono e Identificación -->
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <label for="telefono" class="form-label"required>Teléfono</label>
+                                <label for="telefono" class="form-label" required>Teléfono</label>
                                 <div class="input-group">
                                     <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" id="countryButton">
                                         <span class="flag-icon flag-icon-co"></span> <!------- eleccion de Bandera de Colombia ------>
@@ -63,33 +63,61 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <label for="identificacion" class="form-label"required>Identificación</label>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id="identificacion" placeholder="Número de identificación" required>
-                                    <span class="input-group-text"><i class="bi bi-lock"></i></span>
-                                </div>
+                                <label class="form-label">Dirección</label>
+                                <input type="direccion" class="form-control" placeholder="Dirección" required>
+                            </div>
+                            
+                        </div>
+                        <!-- contraseña y Confirmar contraseña  -->
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" placeholder="Nueva contraseña" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Confirmar contraseña</label>
+                            <input type="password" class="form-control" placeholder="Confirmar contraseña" required>
+                        </div>
+                        
+                    </div>
+                    <!-- identificacion y Dependencia -->
+                    <div class="row mb-3">
+                        
+                        <div class="col-md-6">
+                            <label for="identificacion" class="form-label">Identificación</label>
+                            <div class="input-group">
+                                <!-- Botón desplegable más pequeño -->
+                                <button type="button" class="btn btn-outline-secondary btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" id="tipoDocumentoButton">
+                                    CC.
+                                </button>
+                                <ul class="dropdown-menu" id="tipoDocumentoMenu">
+                                    <li><a class="dropdown-item" href="#" onclick="setTipoDocumento('Cédula')">Cédula</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="setTipoDocumento('Pasaporte')">Pasaporte</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="setTipoDocumento('Tarjeta de identidad')">Tarjeta de identidad</a></li>
+                                </ul>
+                                <input type="text" class="form-control" id="identificacion" placeholder="Número de identificación" required>
+                                <span class="input-group-text"><i class="bi bi-lock"></i></span>
                             </div>
                         </div>
-                        <!-- Dependencia -->
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label for="dependencia" class="form-label">Dependencia</label>
-                                <div class="input-group">
-                                    <button type="button" class="btn btn-outline-secondary d-flex align-items-center justify-content-between w-100" data-bs-toggle="dropdown" aria-expanded="false" id="dependenciaButton">
-                                        <span class="dropdown-arrow me-2">&#9660;</span> <!-- Flecha manual con direccion a la izquierda -->
-                                        <span class="flex-grow-1 text-center">Dependencia o Cargo</span>
-                                        <i class="bi bi-lock ms-2"></i> <!-- Ícono de candado con direccion a la derecha -->
-                                    </button>
-                                    <ul class="dropdown-menu" id="dependenciaMenu">
-                                        <li><a class="dropdown-item" href="#" onclick="updateDependencia('Departamento A')">Gerente</a></li>
-                                        <li><a class="dropdown-item" href="#" onclick="updateDependencia('Departamento B')">Director Técnico</a></li>
-                                        <li><a class="dropdown-item" href="#" onclick="updateDependencia('Departamento C')">supervisor</a></li>
-                                        <li><a class="dropdown-item" href="#" onclick="updateDependencia('Departamento D')">Aux. Administrativa</a></li>
-                                        <li><a class="dropdown-item" href="#" onclick="updateDependencia('Departamento E')">Inspector</a></li>
-                                    </ul>
-                                </div>
+                        <div class="col-md-6">
+                            <label for="dependencia" class="form-label">Dependencia</label>
+                            <div class="input-group">
+                                <button type="button" class="btn btn-outline-secondary d-flex align-items-center justify-content-between w-100" data-bs-toggle="dropdown" aria-expanded="false" id="dependenciaButton">
+                                    <span class="dropdown-arrow me-2">&#9660;</span> <!-- Flecha manual a la izquierda -->
+                                    <span class="flex-grow-1 text-center">Dependencia o Cargo</span> <!-- Texto centrado -->
+                                    <i class="bi bi-lock ms-2"></i> <!-- Ícono de candado a la derecha -->
+                                </button>
+                                <ul class="dropdown-menu" id="dependenciaMenu">
+                                    <li><a class="dropdown-item" href="#" onclick="updateDependencia('Departamento A')">Gerencia</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="updateDependencia('Departamento B')">Director Técnico</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="updateDependencia('Departamento C')">Supervisor</a></li> 
+                                    <li><a class="dropdown-item" href="#" onclick="updateDependencia('Departamento D')">Aux. Administrativa</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="updateDependencia('Departamento E')">Inspector</a></li>
+                                </ul>
+                                <input type="hidden" id ="dependencia" required> 
                             </div>
                         </div>
+                    </div>
                         <!-- Botón Registrar -->
                         <div class="row mb-3">
                             <div class="col-md-12 text-end">
@@ -156,6 +184,39 @@
         placeholderIcon.style.display = 'block'; // Muestra el ícono inicial
         importText.style.display = 'block'; // Muestra el texto de importar imagen
         removeButton.style.display = 'none'; // Oculta el botón de eliminar
+    }
+</script>
+<script>
+    // Validaciones de formulario
+    document.getElementById('registroForm').addEventListener('submit', function(event) {
+        // Obtener valores de los campos
+        const form = event.target;
+        const nombre = form.querySelector('input[placeholder="Escribe tu nombre"]').value.trim();
+        const email = form.querySelector('input[placeholder="Correo electrónico"]').value.trim();
+        const telefono = form.querySelector('#telefono').value.trim();
+        const identificacion = form.querySelector('#identificacion').value.trim();
+        const password = form.querySelector('input[placeholder="Nueva contraseña"]').value.trim();
+        const confirmPassword = form.querySelector('input[placeholder="Confirmar contraseña"]').value.trim();
+        const dependencia = document.getElementById('dependencia').value.trim();
+
+        // Validar campos obligatorios
+        if (!nombre || !email || !telefono || !identificacion || !password || !confirmPassword || !dependencia) {
+            alert('Por favor, completa todos los campos obligatorios antes de enviar.');
+            event.preventDefault(); // Detener envío
+            return;
+        }
+
+        // Validar coincidencia de contraseñas
+        if (password !== confirmPassword) {
+            alert('Las contraseñas no coinciden.');
+            event.preventDefault(); // Detener envío
+            return;
+        }
+    });
+
+    // Función para actualizar el valor de la dependencia
+    function updateDependencia(valor) {
+        document.getElementById('dependencia').value = valor;
     }
 </script>
 

@@ -43,20 +43,20 @@
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label class="form-label">Nombre completo</label>
-                            <input type="text" class="form-control" placeholder="Escribe tu nombre">
+                            <input type="text" class="form-control" placeholder="Escribe tu nombre" required>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Email</label>
-                            <input type="email" class="form-control" placeholder="Correo electrónico">
+                            <input type="email" class="form-control" placeholder="Correo electrónico" required>
                         </div>
                     </div>
-                    <!-- Teléfono y Contraseña -->
+                    <!-- Teléfono e Identificación -->
                     <div class="row mb-3">
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <label for="telefono" class="form-label">Teléfono</label>
+                        <div class="col-md-6">
+                            <label for="telefono" class="form-label" required>Teléfono</label>
                             <div class="input-group">
                                 <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" id="countryButton">
-                                    <span class="flag-icon flag-icon-co"></span> <!-- Bandera de Colombia -->
+                                    <span class="flag-icon flag-icon-co"></span> <!------- eleccion de Bandera de Colombia ------>
                                 </button>
                                 <ul class="dropdown-menu" id="countryMenu">
                                     <li><a class="dropdown-item" href="#" onclick="updateCountry('+57', 'co')"><span class="flag-icon flag-icon-co"></span> Colombia</a></li>
@@ -67,44 +67,61 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" placeholder="Nueva contraseña">
+                            <label class="form-label">Dirección</label>
+                            <input type="direccion" class="form-control" placeholder="Dirección" required>
+                        </div>
+                        
+                    </div>
+                    <!-- contraseña y Confirmar contraseña  -->
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" placeholder="Nueva contraseña" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Confirmar contraseña</label>
+                        <input type="password" class="form-control" placeholder="Confirmar contraseña" required>
+                    </div>
+                    
+                </div>
+                <!-- identificacion y Dependencia -->
+                <div class="row mb-3">
+                    
+                    <div class="col-md-6">
+                        <label for="identificacion" class="form-label">Identificación</label>
+                        <div class="input-group">
+                            <!-- Botón desplegable más pequeño -->
+                            <button type="button" class="btn btn-outline-secondary btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" id="tipoDocumentoButton">
+                               CC
+                            </button>
+                            <ul class="dropdown-menu" id="tipoDocumentoMenu">
+                                <li><a class="dropdown-item" href="#" onclick="setTipoDocumento('Cédula')">Cédula</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="setTipoDocumento('Pasaporte')">Pasaporte</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="setTipoDocumento('Tarjeta de identidad')">Tarjeta de identidad</a></li>
+                            </ul>
+                            <input type="text" class="form-control" id="identificacion" placeholder="Número de identificación" required>
+                            <span class="input-group-text"><i class="bi bi-lock"></i></span>
                         </div>
                     </div>
-                    <!-- Confirmar contraseña y Identificación -->
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label class="form-label">Confirmar contraseña</label>
-                            <input type="password" class="form-control" placeholder="Confirmar contraseña">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="identificacion" class="form-label">Identificación</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" id="identificacion" placeholder="Número de identificación" required>
-                                <span class="input-group-text"><i class="bi bi-lock"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Dependencia -->
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="dependencia" class="form-label">Dependencia</label>
-                            <div class="input-group">
-                                <button type="button" class="btn btn-outline-secondary d-flex align-items-center justify-content-between w-100" data-bs-toggle="dropdown" aria-expanded="false" id="dependenciaButton">
-                                    <span class="dropdown-arrow me-2">&#9660;</span> <!-- Flecha manual a la izquierda -->
-                                    <span class="flex-grow-1 text-center">Dependencia o Cargo</span> <!-- Texto centrado -->
-                                    <i class="bi bi-lock ms-2"></i> <!-- Ícono de candado a la derecha -->
-                                </button>
-                                <ul class="dropdown-menu" id="dependenciaMenu">
-                                    <li><a class="dropdown-item" href="#" onclick="updateDependencia('Departamento A')">Gerencia</a></li>
-                                    <li><a class="dropdown-item" href="#" onclick="updateDependencia('Departamento B')">Director Técnico</a></li>
-                                    <li><a class="dropdown-item" href="#" onclick="updateDependencia('Departamento C')">Supervisor</a></li> 
-                                    <li><a class="dropdown-item" href="#" onclick="updateDependencia('Departamento C')">Aux. Administrativa</a></li>
-                                    <li><a class="dropdown-item" href="#" onclick="updateDependencia('Departamento C')">Inspector</a></li>
-                                </ul>
-                            </div>
+                    <div class="col-md-6">
+                        <label for="dependencia" class="form-label">Dependencia</label>
+                        <div class="input-group">
+                            <button type="button" class="btn btn-outline-secondary d-flex align-items-center justify-content-between w-100" data-bs-toggle="dropdown" aria-expanded="false" id="dependenciaButton">
+                                <span class="dropdown-arrow me-2">&#9660;</span> <!-- Flecha manual a la izquierda -->
+                                <span class="flex-grow-1 text-center">Dependencia o Cargo</span> <!-- Texto centrado -->
+                                <i class="bi bi-lock ms-2"></i> <!-- Ícono de candado a la derecha -->
+                            </button>
+                            <ul class="dropdown-menu" id="dependenciaMenu">
+                                <li><a class="dropdown-item" href="#" onclick="updateDependencia('Departamento A')">Gerencia</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="updateDependencia('Departamento B')">Director Técnico</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="updateDependencia('Departamento C')">Supervisor</a></li> 
+                                <li><a class="dropdown-item" href="#" onclick="updateDependencia('Departamento D')">Aux. Administrativa</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="updateDependencia('Departamento E')">Inspector</a></li>
+                            </ul>
+                            <input type="hidden" id ="dependencia" required> 
                         </div>
                     </div>
+                </div>
                     <!-- Botón Guardar -->
                     <div class="row mb-3">
                         <div class="col-md-12 text-end">

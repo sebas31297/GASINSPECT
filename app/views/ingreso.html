@@ -70,10 +70,19 @@
                             <div class="col-md-6">
                                 <label for="identificacion" class="form-label">Identificación</label>
                                 <div class="input-group">
+                                    <!-- Botón desplegable más pequeño -->
+                                    <button type="button" class="btn btn-outline-secondary btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" id="tipoDocumentoButton">
+                                       CC
+                                    </button>
+                                    <ul class="dropdown-menu" id="tipoDocumentoMenu">
+                                        <li><a class="dropdown-item" href="#" onclick="setTipoDocumento('Cédula')">Cédula</a></li>
+                                        <li><a class="dropdown-item" href="#" onclick="setTipoDocumento('Pasaporte')">Pasaporte</a></li>
+                                        <li><a class="dropdown-item" href="#" onclick="setTipoDocumento('Tarjeta de identidad')">Tarjeta de identidad</a></li>
+                                    </ul>
                                     <input type="text" class="form-control" id="identificacion" placeholder="Número de identificación" required>
                                     <span class="input-group-text"><i class="bi bi-lock"></i></span>
                                 </div>
-                            </div>
+                            </div>    
                         </div>
                         <!-- Dependencia y Adjuntar Documentos -->
                         <div class="row mb-3">

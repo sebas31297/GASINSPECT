@@ -75,6 +75,11 @@
             <!--parrafo (p), de color azul oscuro, peso de fuente normal-->
             <hr>
 
+
+
+<!-- ------------------------FORMULARIO PARA LA TABLA VISITA DE LA BD GASINSPECT------------------------------>
+
+
             <form action="../controllers/VisitaController.php" method="POST"><!--apertura para establecer un formulario-->
 
 
@@ -84,7 +89,7 @@
                     <div class="col-md-6">
                         <!--columna que ocupará 6 de los 12 espacios totales dentro de la fila establecida-->
                         <label for="nombre" class="form-label">Nombre del
-                            usuario:</label><!--titulo encima del indicador de entrada(espacio)-->
+                            cliente:</label><!--titulo encima del indicador de entrada(espacio)-->
                             <input type="text" class="form-control" id="nombre" name="nombre_cliente" placeholder="Nombre completo"><!--indicador de entrada-->
                     </div>
 
@@ -92,9 +97,11 @@
                         <!--columna que ocupará 6 de los 12 espacios totales dentro de la fila establecida-->
                         <label for="identificacion"
                             class="form-label">Identificación:</label><!--titulo encima del indicador de entrada(espacio)-->
-                        <input type="number" class="form-control" id="identificacion" name="identificacion" placeholder="# de documento"><!--indicador de entrada-->
+                        <input type="number" class="form-control" id="identificacion" name="identificacion" placeholder="identificacion del cliente"><!--indicador de entrada-->
                     </div>
                 </div>
+
+
 
 
                 <div class="row mb-4"><!-- fila con margin button(por debajo)  de 3unidades-->
@@ -112,6 +119,9 @@
                     </div>
                 </div>
 
+
+
+
                 <div class="row mb-4"><!-- fila con margin button(por debajo)  de 3unidades-->
                     <div class="col-md-6"><!--columna que ocupará 6 de los 12 espacios totales dentro de la fila establecida-->
                         
@@ -127,6 +137,9 @@
                     </div>
                             
                 </div>
+
+
+
 
                 <div class="row mb-4"><!-- fila con margin button(por debajo)  de 3unidades-->
 
@@ -146,6 +159,9 @@
                               
                     </div>
                 </div>
+
+
+
 
                 <div class="row mb-4"><!-- fila con margin button(por debajo)  de 3unidades-->
 
@@ -167,6 +183,10 @@
                               </select>
                     </div>
                 </div>
+
+
+
+
 
                 <div class="row mb-4"><!-- fila con margin button(por debajo)  de 3unidades-->
                     <div class="col-md-6">
@@ -191,6 +211,9 @@
                     </div>
                 </div>
 
+
+
+
                 <div class="row mb-4"><!-- fila con margin button(por debajo)  de 3unidades-->
                     <div class="col-md-6">
                         <label for="exampleDataList" class="form-label">Tipo de instalación:</label><!--texto que describe al selector-->
@@ -213,16 +236,21 @@
                     </div>
                 </div>
 
+
+
+
+
                 <div class="row mb-3"><!-- fila con margin button(por debajo)  de 3unidades-->
                     <div class="col-md-6">
-                        <label for="exampleDataList" class="form-label">Estado:</label><!--texto que describe al selector-->
-                        <select class="form-select w-100" name="id_estado" aria-label="Default select example"><!--formulario de selección de opciones, de llenado obligatorio (required)-->
+                        <label for="exampleDataList" class="form-label">Estado de visita:</label><!--texto que describe al selector-->
+                        <select class="form-select w-100" name="id_estado" aria-label="Default select example"><!--formulario de selección de opciones-->
                             <option selected disabled>Elija el estado</option><!--titulo guia interno del spaceholder-->
                             <?php foreach ($estados as $est): ?> <!--recorre la lista de la tabla tipo_gas de la BD y guarda cada opcion en la variable $dist-->
                                 <option value="<?= $est['id_estado'] ?>"><?= $est['tipo_estado'] ?></option><!--creación de lista de opciones con el valor que la variable $tipoGas arroje según el id de cada opcion--> 
                              <?php endforeach; ?><!--cierre de bucle foreach-->
                         </select>
                     </div>
+                </div>
                 
 
 
@@ -230,7 +258,7 @@
 
 
 
-
+                 <div class="row mb-3"><!-- fila con margin button(por debajo)  de 3unidades--> 
                 
                     <div class="col-md-12">
                         <!--columna que ocupará 6 de los 12 espacios totales dentro de la fila establecida-->

@@ -2,6 +2,8 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
+session_start();
+
 require_once __DIR__ . '/../models/VisitaModel.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -28,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         ':id_tipo_servicio' => $_POST['id_tipo_servicio'],
         ':observaciones' => $_POST['observaciones'],
         ':id_estado' => $_POST['id_estado'],
-        ':id_usuario' => 1 // Asignación temporal hasta implementar autenticación
+        ':id_usuario' => null // Asignación temporal hasta implementar autenticación
     ];
 
     // Intentar registrar la visita

@@ -4,11 +4,11 @@ use config\Database;  //uso de la clase Database que está dentro del namespace 
 
 
 class VisitaModel { //creacion de la clase VisitaModel que iteractuará con la BD para registrar las visitas
-    private $conn; //declaracion de un atributo privado llamado "conn" dentro de la clase "VisitaModel". guardará la instancia de conexion
+    private $db; //declaracion de un atributo privado llamado "conn" dentro de la clase "VisitaModel". guardará la instancia de conexion
 
     public function __construct() { //metodo constructor para inicializar las propiedades de la clase "Database" en la instancia creada
         $database = new Database();  //crea una nueva instancia (copia) de la clase Database y la guarda en la variable "$database"
-        $this->conn = $database->getConnection(); //llama al metodo "getconnection" de la instancia "$database" y guarda la conexion en el atributo privado "conn"  
+        $this->db = $database->getConnection(); //llama al metodo "getconnection" de la instancia "$database" y guarda la conexion en el atributo privado "conn"  
     }
 
     public function registrarVisita($datos) { //define un metodo publico llamado "registroavisita" con una variable de entrada llamada $datos
@@ -24,7 +24,7 @@ class VisitaModel { //creacion de la clase VisitaModel que iteractuará con la B
             :id_tipo_servicio, :observaciones, :id_estado, :id_usuario
         )";
 
-        $stmt = $this->conn->prepare($query); //metodo que prepara la consulta con marcadores
+        $stmt = $this->db->prepare($query); //metodo que prepara la consulta con marcadores
         return $stmt->execute($datos); //metodo de ejecucion, que ejecuta la consulta con los datos del usuario y guarda los datos del usuario
     }
 }

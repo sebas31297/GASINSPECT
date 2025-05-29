@@ -1,5 +1,5 @@
 <?php
-// Config/Database.php
+// Config/database.php
 
 namespace config; //la clase creada o definida se asociará a la carpeta config
 

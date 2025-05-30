@@ -1,9 +1,7 @@
 <?php
-// App/Model/UsuarioModel.php
+namespace app\models; // app/models/UsuarioModel.php
 
-namespace App\Model;
-
-use Config\Database;
+use config\Database;
 use PDO;
 
 class UsuarioModel
@@ -16,78 +14,81 @@ class UsuarioModel
     }
 
     /** Inserta un nuevo usuario */
-    public function insertarUsuario(string $nombre, string $email, string $telefono,string $tipoDocumento, string $identificacion, string $dependencia, string $fechaIngreso,string $duracionContrato, string $tipoContrato, string $fotoPerfil ): bool
-    {
-        $sql  = "INSERT INTO usuarios (nombre_completo,email,telefono,tipo_documento, identificacion, dependencia, fecha_ingreso, duracion_contrato, tipo_contrato, foto_perfil) VALUES (:nombre, :email, :telefono, :tipoDocumento, :identificacion, :dependencia, :fechaIngreso, :duracionContrato, :tipoContrato, :fotoPerfil)";
-        $stmt = $this->db->prepare($sql);
-        $stmt->bindParam(':nombre', $nombre);
-        $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':telefono', $telefono);
-        $stmt->bindParam(':tipoDocumento', $tipoDocumento);
-        $stmt->bindParam(':identificacion', $identificacion);
-        $stmt->bindParam(':dependencia', $dependencia);
-        $stmt->bindParam(':fechaIngreso', $fechaIngreso);
-        $stmt->bindParam(':duracionContrato', $duracionContrato);
-        $stmt->bindParam(':tipoContrato', $tipoContrato);
-        $stmt->bindParam(':fotoPerfil', $fotoPerfil);
-        return $stmt->execute();
-    }
+        public function insertarUsuario(string $nombre, string $correo, string $telefono, string $direccion, string $contrasena, ?int $tipo_documento, ?int $cargo, string $identificacion, ?string $foto): bool
+        {
+         $sql = "INSERT INTO usuario (nombre_usuario, correo, telefono, direccion, contrasena, id_tipo_documento, id_cargo, identificacion, foto)
+                 VALUES (:nombre_usuario, :correo, :telefono, :direccion, :contrasena, :id_tipo_documento, :id_cargo, :identificacion, :foto)";
+    
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindParam(':nombre_usuario', $nombre);
+            $stmt->bindParam(':correo', $correo);
+            $stmt->bindParam(':telefono', $telefono);
+            $stmt->bindParam(':direccion', $direccion);
+            $stmt->bindParam(':contrasena', $contrasena);
+            $stmt->bindParam(':id_tipo_documento', $tipo_documento, PDO::PARAM_INT);
+            $stmt->bindParam(':id_cargo', $cargo, PDO::PARAM_INT);
+            $stmt->bindParam(':identificacion', $identificacion);
+            $stmt->bindParam(':foto', $foto, PDO::PARAM_STR);
+            return $stmt->execute();
+        }
     /** Obtiene todos los usuarios */
-    public function getUsuarios(): array
-    {
-        $sql  = "SELECT * FROM usuarios";
-        $stmt = $this->db->query($sql);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
+        public function getUsuarios(): array
+        {
+            $sql  = "SELECT * FROM usuario";
+            $stmt = $this->db->query($sql);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
 
     /** Elimina un usuario por su ID , opcion sin editar y confirmar*/
-    public function eliminarUsuario(int $id): bool
-    {
-        $sql  = "DELETE FROM usuarios WHERE id_usuario = :id";
-        $stmt = $this->db->prepare($sql);
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        return $stmt->execute();
-    }
+        public function eliminarUsuario(int $id): bool
+        {
+            $sql  = "DELETE FROM usuarios WHERE id_usuario = :id";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            return $stmt->execute();
+        }
 
     /** Obtiene un solo usuario por ID */
-    public function getUsuarioById(int $id): ?array
-    {
-        $sql  = "SELECT * FROM usuarios WHERE id_usuario = :id";
-        $stmt = $this->db->prepare($sql);
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        $stmt->execute();
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $row ?: null;
-    }
+        public function getUsuarioById(int $id): ?array
+        {
+            $sql  = "SELECT * FROM usuario WHERE id_usuario = :id";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $row ?: null;
+        }
 
     /** Actualiza un usuario existente */
-    public function actualizarUsuario(int $id, string $nombre, string $email, string $telefono,string $tipoDocumento, string $identificacion, string $dependencia, string $fechaIngreso,string $duracionContrato, string $tipoContrato, string $fotoPerfil ): bool
-    {
-        $sql  = "UPDATE usuarios
-                 SET nombre_completo = :nombre,
-                        email = :email,
+        public function actualizarUsuario(int $id, string $nombre, string $correo, string $telefono, string $direccion, string $contrasena, ?int $tipo_documento, ?int $cargo, string $identificacion, ?string $foto ): bool
+        {
+            $sql  = "UPDATE usuario
+                    SET nombre_usuario = :nombre,
+                        correo = :correo,
                         telefono = :telefono,
-                        tipo_documento = :tipoDocumento,
+                        direccion = :direccion,
+                        contrasena = :contrasena,
+                        id_tipo_documento = :tipoDocumento,
                         identificacion = :identificacion,
-                        dependencia = :dependencia,
-                        fecha_ingreso = :fechaIngreso,
-                        duracion_contrato = :duracionContrato,
-                        tipo_contrato = :tipoContrato,
-                        foto_perfil = :fotoPerfil
+                        id_cargo = :cargo,    
+                        foto= :foto
                      
-                 WHERE id_usuario = :id";
-        $stmt = $this->db->prepare($sql);
-        $stmt->bindParam(':nombre', $nombre);
-        $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':telefono', $telefono);
-        $stmt->bindParam(':identificacion', $identificacion);
-        $stmt->bindParam(':tipoDocumento', $tipoDocumento);
-        $stmt->bindParam(':dependencia', $dependencia);
-        $stmt->bindParam(':fechaIngreso', $fechaIngreso);
-        $stmt->bindParam(':duracionContrato', $duracionContrato);
-        $stmt->bindParam(':tipoContrato', $tipoContrato);
-        $stmt->bindParam(':fotoPerfil', $fotoPerfil);
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        return $stmt->execute();
-    }
+                    WHERE id_usuario = :id";
+
+            $stmt = $this->db->prepare($sql);
+
+            $stmt->bindParam(':nombre', $nombre);
+            $stmt->bindParam(':correo', $correo);
+            $stmt->bindParam(':telefono', $telefono);
+            $stmt->bindParam(':direccion', $direccion);
+            $stmt->bindParam(':contrasena', $contrasena);        
+            $stmt->bindParam(':tipoDocumento', $tipo_documento, PDO::PARAM_INT);
+            $stmt->bindParam(':identificacion', $identificacion);
+            $stmt->bindParam(':cargo', $cargo, PDO::PARAM_INT);      
+            $stmt->bindParam(':foto', $foto, PDO::PARAM_STR);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            return $stmt->execute();
+        }
 }
+ 

@@ -1,109 +1,58 @@
 <?php
-// App/Controller/UsuarioController.php
+namespace app\controllers;
 
-namespace App\Controller;
+use app\models\UsuarioModel;
 
-use App\Model\UsuarioModel;
 
 class UsuarioController
 {
-    private $usuarioModel;
+    private $model;
 
     public function __construct()
     {
-        $this->usuarioModel = new UsuarioModel();
-    }
-    /** Inserta un nuevo usuario */
-    public function insertarUsuario()
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $nombre = $_POST['nombre'] ?? '';
-            $email = $_POST['email'] ?? '';
-            $telefono = $_POST['telefono'] ?? '';
-            $tipoDocumento = $_POST['tipo_documento'] ?? '';
-            $identificacion = $_POST['identificacion'] ?? '';
-            $dependencia = $_POST['dependencia'] ?? '';
-            $fechaIngreso = $_POST['fecha_ingreso'] ?? '';
-            $duracionContrato = $_POST['duracion_contrato'] ?? '';
-            $tipoContrato = $_POST['tipo_contrato'] ?? '';
-            $fotoPerfil = $_FILES['foto_perfil']['name'] ?? '';
-
-            // mueve la foto de perfil a una carpeta destino
-            move_uploaded_file(
-                $_FILES['foto_perfil']['tmp_name'],
-                'fotos_perfil/' . $fotoPerfil);
-            // Inserta el usuario en la base de datos
-            $this->usuarioModel->insertarUsuario(
-                $nombre,
-                $email,
-                $telefono,
-                $tipoDocumento,
-                $identificacion,
-                $dependencia,
-                $fechaIngreso,
-                $duracionContrato,
-                $tipoContrato,
-                $fotoPerfil
-            );
-            // redirecciona a una pagina de éxito o a la lista de usuarios
-            header('Location: /usuario_registrado.php');
-            exit;
-        }
-    }
-    /** lista todos los usuarios */
-    public function listarUsuarios()
-    {
-        $usuarios = $this->usuarioModel->getUsuarios();
-        // Renderiza la vista con la lista de usuarios
-        include 'usuarios.php';
+        $this->model = new UsuarioModel();
     }
 
-    /** edita un usuario */
-    public function editarUsuario(int $id)
+    public function mostrarFormularioRegistro()
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $nombre = $_POST['nombre'] ?? '';
-            $email = $_POST['email'] ?? '';
-            $telefono = $_POST['telefono'] ?? '';
-            $tipoDocumento = $_POST['tipo_documento'] ?? '';
-            $identificacion = $_POST['identificacion'] ?? '';
-            $dependencia = $_POST['dependencia'] ?? '';
-            $fechaIngreso = $_POST['fecha_ingreso'] ?? '';
-            $duracionContrato = $_POST['duracion_contrato'] ?? '';
-            $tipoContrato = $_POST['tipo_contrato'] ?? '';
-            $fotoPerfil = $_FILES['foto_perfil']['name'] ?? '';
-
-            // actualiza el usuario en la base de datos
-            $this->usuarioModel->actualizarUsuario(
-                $id,
-                $nombre,
-                $email,
-                $telefono,
-                $tipoDocumento,
-                $identificacion,
-                $dependencia,
-                $fechaIngreso,
-                $duracionContrato,
-                $tipoContrato,
-                $fotoPerfil
-            );
-            // redirecciona a una pagina de éxito o a la lista de usuarios
-            header('Location: /usuario_actualizado.php');
-            exit;
-        } else {
-            // Obtiene el usuario por ID
-            $usuario = $this->usuarioModel->getUsuarioById($id);
-            // Renderiza la vista de edición con el formulkario de edicion
-            include 'editar_usuario.php';
-        }
-    }
-    /** Elimina un usuario */
-    public function eliminarUsuario(int $id)
-    {
-        $this->usuarioModel->eliminarUsuario($id);
-        // Redirecciona a una pagina de éxito o a la lista de usuarios
-        header('Location: usuarios.php');
-        exit;
+         require_once __DIR__ . '/../views/registroUsuario.php';
     }
 
+   public function registrarUsuario(array $datos)
+{
+    session_start();
+
+    $nombre = $datos['nombre_usuario'] ?? '';
+    $correo = $datos['correo'] ?? '';
+    $telefono = $datos['telefono'] ?? '';
+    $direccion = $datos['direccion'] ?? '';
+    $contrasena = $datos['contrasena'] ?? '';
+    $tipo_documento = isset($datos['id_tipo_documento']) ? (int)$datos['id_tipo_documento'] : null;
+    $cargo = isset($datos['id_cargo']) ? (int)$datos['id_cargo'] : null;
+    $identificacion = $datos['identificacion'] ?? '';
+    $foto = null; // Para simplificar
+
+    $exito = $this->model->insertarUsuario(
+        $nombre,
+        $correo,
+        $telefono,
+        $direccion,
+        $contrasena,
+        $tipo_documento,
+        $cargo,
+        $identificacion,
+        $foto
+    );
+
+    if ($exito) {
+        $_SESSION['mensaje'] = ['texto' => 'Usuario registrado correctamente', 'tipo' => 'success'];
+    } else {
+        $_SESSION['mensaje'] = ['texto' => 'Error al registrar usuario', 'tipo' => 'danger'];
+    }
+
+    // Redirigir para mostrar el formulario y el mensaje
+    header('Location: index.php');
+    exit;
+}
+    
 }

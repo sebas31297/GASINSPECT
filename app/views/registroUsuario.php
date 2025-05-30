@@ -1,3 +1,4 @@
+<?php require_once __DIR__. '/../controllers/formUserController.php'; ?> <!--inclusión del controlador formularioController.php para que prepare los datos que el formulario necesitará-->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -34,16 +35,16 @@
                     <h5>Regístrate</h5>
                     <p>Registra tu información.
                     <br> El usuario y la contraseña serán enviados al correo registrado.</p>
-                    <form id="registroForm">
+                    <form id="registroForm" action="../controllers/UsuarioController.php" method="POST" enctype="multipart/form-data"><!--apertura para establecer un formulario / enctype para la foto-->
                         <!-- Nombre completo y Email -->
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <label class="form-label">Nombre completo</label>
-                                <input type="text" class="form-control" placeholder="Escribe tu nombre" required>
+                                <label class="form-label" >Nombre completo</label>
+                                <input type="text" class="form-control" name="nombre_usuario" placeholder="Escribe tu nombre" required>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Email</label>
-                                <input type="email" class="form-control" placeholder="Correo electrónico" required>
+                                <input type="email" class="form-control" name="correo" placeholder="Correo electrónico" required>
                             </div>
                         </div>
                         <!-- Teléfono e Identificación -->
@@ -59,12 +60,12 @@
                                         <li><a class="dropdown-item" href="#" onclick="updateCountry('+58', 've')"><span class="flag-icon flag-icon-ve"></span> Venezuela</a></li>
                                         <li><a class="dropdown-item" href="#" onclick="updateCountry('+55', 'br')"><span class="flag-icon flag-icon-br"></span> Brasil</a></li>
                                     </ul>
-                                    <input type="tel" class="form-control" id="telefono" placeholder="Número de teléfono" required>
+                                    <input type="tel" class="form-control" id="telefono" name="telefono" placeholder="Número de teléfono" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Dirección</label>
-                                <input type="text" class="form-control" placeholder="Dirección" required>
+                                <input type="text" class="form-control" name="direccion" placeholder="Dirección" required>
                             </div>
                             
                         </div>
@@ -72,7 +73,7 @@
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" placeholder="Nueva contraseña" required>
+                            <input type="password" class="form-control" name="contrasena" placeholder="Nueva contraseña" required>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Confirmar contraseña</label>
@@ -85,43 +86,34 @@
                         
                         <div class="col-md-6">
                             <label for="identificacion" class="form-label">Identificación</label>
-                            <div class="input-group">
-                                <!-- Botón desplegable más pequeño -->
-                                <button type="button" class="btn btn-outline-secondary btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" id="tipoDocumentoButton">
-                                    CC.
-                                </button>
-                                <ul class="dropdown-menu" id="tipoDocumentoMenu">
-                                    <li><a class="dropdown-item" href="#" onclick="setTipoDocumento('Cédula')">Cédula</a></li>
-                                    <li><a class="dropdown-item" href="#" onclick="setTipoDocumento('Pasaporte')">Pasaporte</a></li>
-                                    <li><a class="dropdown-item" href="#" onclick="setTipoDocumento('Tarjeta de identidad')">Tarjeta de identidad</a></li>
-                                </ul>
-                                <input type="text" class="form-control" id="identificacion" placeholder="Número de identificación" required>
+                                <select name="id_tipo_documento" id="id_tipo_documento" class="form-select w-100"><!--formulario de selección de opciones, de llenado obligatorio (required)-->
+                                    <option disabled selected>Elija su tipo de documento</option><!--titulo guia interno del spaceholder-->
+                                <?php foreach ($documentos as $docto): ?><!--recorre la lista de la tabla docto de la BD y guarda cada opcion en la variable $docto-->
+                                  <option value="<?= $docto['id_tipo_documento'] ?>"><?= $docto['tipo_documento'] ?></option><!--creación de lista de opciones con el valor que la variable $docto arroje según el id de cada opcion-->
+                                <?php endforeach; ?><!--cierre de bucle foreach-->
+                                </select>
+
+                                <input type="text" class="form-control" id="identificacion" name="identificacion"placeholder="Número de identificación" required>
                                 <span class="input-group-text"><i class="bi bi-lock"></i></span>
                             </div>
-                        </div>
+                    </div>
                         <div class="col-md-6">
                             <label for="dependencia" class="form-label">Dependencia</label>
-                            <div class="input-group">
-                                <button type="button" class="btn btn-outline-secondary d-flex align-items-center justify-content-between w-100" data-bs-toggle="dropdown" aria-expanded="false" id="dependenciaButton">
-                                    <span class="dropdown-arrow me-2">&#9660;</span> <!-- Flecha manual a la izquierda -->
-                                    <span class="flex-grow-1 text-center">Dependencia o Cargo</span> <!-- Texto centrado -->
-                                    <i class="bi bi-lock ms-2"></i> <!-- Ícono de candado a la derecha -->
-                                </button>
-                                <ul class="dropdown-menu" id="dependenciaMenu">
-                                    <li><a class="dropdown-item" href="#" onclick="updateDependencia('Departamento A')">Gerencia</a></li>
-                                    <li><a class="dropdown-item" href="#" onclick="updateDependencia('Departamento B')">Director Técnico</a></li>
-                                    <li><a class="dropdown-item" href="#" onclick="updateDependencia('Departamento C')">Supervisor</a></li> 
-                                    <li><a class="dropdown-item" href="#" onclick="updateDependencia('Departamento D')">Aux. Administrativa</a></li>
-                                    <li><a class="dropdown-item" href="#" onclick="updateDependencia('Departamento E')">Inspector</a></li>
-                                </ul>
-                                <input type="hidden" id ="dependencia" required> 
-                            </div>
+                            <select name="id_cargo" id="dependencia" class="form-select w-100"><!--formulario de selección de opciones, de llenado obligatorio (required)-->
+                                <option disabled selected>dependencia</option><!--titulo guia interno del spaceholder-->
+                                
+        
+                                <?php foreach ($cargos as $dep): ?><!--recorre la lista de la tabla docto de la BD y guarda cada opcion en la variable $docto-->
+                                  <option value="<?= $dep['id_cargo'] ?>"><?= $dep['nombre_cargo'] ?></option><!--creación de lista de opciones con el valor que la variable $docto arroje según el id de cada opcion-->
+                                <?php endforeach; ?><!--cierre de bucle foreach-->
+                            </select>
+                         
                         </div>
-                    </div>
+                    
                         <!-- Botón Registrar -->
                         <div class="row mb-3">
                             <div class="col-md-12 text-end">
-                                <button type="submit" class="btn btn-save btn-sm" onclick="window.location.href='acceso.html'">Atras</button>
+                                <button type="button" class="btn btn-save btn-sm" onclick="window.location.href='acceso.html'">Atras</button>
                                 <button type="submit" class="btn btn-save btn-sm">Registrar</button>
                             </div>
                         </div>

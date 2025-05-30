@@ -28,4 +28,3 @@ class Database { //definiciín de la clase para la coneccion con la base de dato
         return $this->connection; //devuelve a la conexion establecida o a null si no se pudo establecer
     }
 }
-        

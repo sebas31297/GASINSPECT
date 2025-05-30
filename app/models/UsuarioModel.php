@@ -4,6 +4,7 @@
 namespace app\models;
 require_once __DIR__ . '/../config/Database.php';
 use config\Database;
+
 use PDO;
 
 class UsuarioModel
@@ -16,6 +17,7 @@ class UsuarioModel
     }
 
     /** Inserta un nuevo usuario */
+
     public function insertarUsuario(
         string $nombre_usuario,
         string $correo,
@@ -47,6 +49,7 @@ class UsuarioModel
     public function getUsuarios(): array
     {
         $sql = "SELECT * FROM usuario";
+
         $stmt = $this->db->query($sql);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -55,6 +58,7 @@ class UsuarioModel
     public function eliminarUsuario(int $id): bool
     {
         $sql = "DELETE FROM usuario WHERE id_usuario = :id";
+
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         return $stmt->execute();
@@ -64,6 +68,7 @@ class UsuarioModel
     public function getUsuarioById(int $id): ?array
     {
         $sql = "SELECT * FROM usuario WHERE id_usuario = :id";
+
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
@@ -72,6 +77,7 @@ class UsuarioModel
     }
 
     /** Actualiza un usuario existente */
+
     public function actualizarUsuario(
         int $id,
         string $nombre_usuario,
@@ -120,4 +126,5 @@ class UsuarioModel
         $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
         return $usuario ?: null;
     }
+
 }

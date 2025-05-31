@@ -1,5 +1,14 @@
+<?php
+session_start();
+require_once '../controllers/AccesoController.php';
 
-    <!DOCTYPE html>
+use app\controllers\AccesoController;
+
+$auth = new AccesoController();
+$auth->login();
+?>
+
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -57,25 +66,29 @@
 
             <div class="form-contenido p-4"><!--container que contiene un grupo de formularios-->
                 
-                <form><!--iniciación de formulario-->
+                <form method="POST" action="acceso.php">
+                    <?php if (isset($_GET['error'])): ?>
+                        <div style="color:red;">Usuario o contraseña incorrectos.</div>
+                    <?php endif; ?><!--iniciación de formulario-->
+
                     <div class="input-group mb-3" id="grupoFormularios"><!--contenedor que agrupa a los campos de entrada y los concentra de forma ordenada-->
                         <div class="input-field mb-4"><!--container que permite acoplar al icono junto al placeholder-->
                             <div class="input-icon" id="iconoUsuario"><!--contenedor para icono-->
                                 <i class="bi bi-person-fill"></i><!--icono de usuario extraido de bootstrap-->
-                                <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="Usuario asignado:"><!--campo de texto para ingresar el usuario-->
+                                <input type="text" class="form-control" aria-label="Text input with checkbox" name="correo" placeholder="Correo electrónico" required><!--campo de texto para ingresar el usuario-->
                             </div>
                         </div>
                         <div class="input-field mb-2"><!--container que permite acoplar al icono junto al placeholder-->
                             <div class="input-icon" id="iconoContraseña"><!--contenedor para icono-->
                                 <i class="bi bi-lock-fill"></i><!--icono de contraseña extraido de bootstrap-->
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña:"><!--campo de texto para ingresar el contraseña-->
+                                <input type="password" class="form-control" aria-label="Text input with checkbox" name="contrasena" placeholder="Contraseña" required><!--campo de texto para ingresar el contraseña-->
                             </div>
                         </div>
                         <p>¿olvidaste tu contraseña? <a href="#"> click aquí</a></p><!--texto con link que indican opción de recuperar contraseña-->
                     </div>
 
                     <div class="btn-field">
-                        <input class="btn" id="btnIngresar" value="Ingresar"><!--boton para ingresar, color azul-oscuro, tipo submit (envía lo ingresado en campo de texto), con interacción al tocarlo en color azul claro-->
+                        <input class="btn" id="btnIngresar" type="submit" value="Ingresar"><!--boton para ingresar, color azul-oscuro, tipo submit (envía lo ingresado en campo de texto), con interacción al tocarlo en color azul claro-->
                         <input class="btn" id="btnReg" onclick="window.location.href='registroUsuario.html'" value="Registrarse"><!--boton para registrarse, color blanco (transporte a otra ventana), con interacción al tocarlo en color azul claro-->
                     </div>
                 </form>

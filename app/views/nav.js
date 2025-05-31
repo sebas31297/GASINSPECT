@@ -98,74 +98,9 @@ document.addEventListener('DOMContentLoaded', () => {///////////////////////////
 
 
 
-    // /////////////////////////////////////////////////////////////CALENDARIO REGISTRO/////////////////////////////////////////////////////////
-
-    const updateCalendarRegistro = () => {
-        const monthYearElement = document.getElementById('monthYearRegistro');//elemento constante del DOM que muestra el mes y el año actal
-        const datesElement = document.getElementById('datesRegistro');//elemento constante del DOM que muestra las fechas del calendario
-        const prevBtn = document.getElementById('prevBtnRegistro');//botón para ir hacia atrás
-        const nextBtn = document.getElementById('nextBtnRegistro');//botón para ir hacia adelante
-
-        // Verificar que los elementos existen
-        if (!monthYearElement || !datesElement || !prevBtn || !nextBtn) {//condicional que expresa que si los elementos ()) no existen se mostrará el mensaje
-            console.log('Calendario Registro no encontrado.');//mensaje
-            return;
-        }
-
-        let currentDate = new Date();//creación de la variable currentdate, donde alojará al objeto Date(fecha y hora actual)
-
-        const updateCalendarView = () => {//actalización de la fecha y hora cada vez que cargue la pagina
-            const currentYear = currentDate.getFullYear();//año actual
-            const currentMonth = currentDate.getMonth();//mes actual
-
-            const firstDay = new Date(currentYear, currentMonth, 1);//crea un nuevo objeto date que representa el primer dia del mes actual
-            const lastDay = new Date(currentYear, currentMonth + 1, 0);//crea un nuevo objeto date que representa el ultimo dia del mes actual
-            const totalDays = lastDay.getDate();//elemento que con la función getDay, crea el total de dias del mes del año actual
-            const firstDayIndex = firstDay.getDay();//función para declarar en que dia de la semana cae la primer fecha del mes
-            const lastDayIndex = lastDay.getDay();//función para declarar en que dia de la semana cae la ultimo fecha del mes
-
-            const monthYearString = currentDate.toLocaleString('default', { month: 'long', year: 'numeric' });//crea el elemento monthyearstring que muestra totalmente el mes y año actual
-            monthYearElement.textContent = monthYearString;//convierte la fecha en letras (abril de 2025)
-
-            let datesHTML = '';//inicialización de una cadena vacía donde irán las fechas del mes
-
-            // Llenar días previos (vacíos)
-            for (let i = firstDayIndex; i > 0; i--) {//un para, que hace que los dias del mes pasado, antes del priemr dia del mes se muestren
-                const prevDate = new Date(currentYear, currentMonth, 0 - i + 1);//calculo para obtener el dia ultimo exacto del mes anterior
-                datesHTML += `<div class="date inactive">${prevDate.getDate()}</div>`;//muestra en pantalla el resultado
-            }
-
-            // Llenar días del mes actual
-            for (let i = 1; i <= totalDays; i++) {//sumatoria a partir del primer dia hasta el ultimo del mes
-                const date = new Date(currentYear, currentMonth, i);//se posiciona en la fecha que corresponde al dia actual
-                const activeClass = date.toDateString() === new Date().toDateString() ? 'active' : '';//verfiica si está en el dia actual
-                datesHTML += `<div class="date ${activeClass}">${i}</div>`;//muestra en el html el dia y fecha actual
-            }
-
-            // Llenar días siguientes (vacíos)
-            for (let i = 1; i <= 7 - lastDayIndex; i++) {//un para, que hace que los dias del mes siguiente, s se muestren
-                const nextDate = new Date(currentYear, currentMonth + 1, i);//calculo para obtener el primer dia exacto del mes siguiente
-                datesHTML += `<div class="date inactive">${nextDate.getDate()}</div>`;//muestra en pantalla 
-            }
-
-            datesElement.innerHTML = datesHTML;//contenedor donde se mostrará la cadena de dates o fechas
-        };
-
-        prevBtn.addEventListener('click', () => {//boton previo
-            currentDate.setMonth(currentDate.getMonth() - 1);//funcion dirige hacia el mes anterior
-            updateCalendarView();//actualiza el calendario despues de haber operado el boton
-        });
-
-        nextBtn.addEventListener('click', () => {//boton siguiente
-            currentDate.setMonth(currentDate.getMonth() + 1);//funcion dirige hacia el mes siguiente
-            updateCalendarView();//actualiza el calendario despues de haber operado el boton
-        });
-
-        updateCalendarView();//actualiza el calendario despues de haber operado todas sus funciones
-    };
 
 
- 
+  
 
 
 
@@ -277,7 +212,8 @@ document.addEventListener('DOMContentLoaded', () => {///////////////////////////
     //inicialización de dos calendarios
     updateCalendarAgenda();//actualiza el primer calendario de la ventana agenda
     updateCalendarRegistro();//actualiza el calendario de registro de inspección
-    
+
+
 
 });//fin de la primera funcion de compilar los calendarios. 3 en total
 
@@ -442,3 +378,50 @@ function deleteLastCharacter() {
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////CODIGO REGISTRO-INSPECCION/////////////////////////////////////////////////////////
+/////////////cargue de municipios segun su departamento////////////////
+
+
+
+const deptoSelect = document.getElementById('id_depto');
+const municipioSelect = document.getElementById('municipio');
+
+deptoSelect.addEventListener('change', function () {
+    const idDepto = deptoSelect.value;
+
+    if (idDepto) {
+        fetch(`http://localhost/GASINSPECT/app/controllers/get_municipios.php?id_depto=${idDepto}`)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data); // ✅ Aquí ves qué datos llegan desde PHP
+
+                
+                municipioSelect.innerHTML = '<option disabled selected>Seleccione un municipio</option>';
+
+                data.forEach(m => {
+                    const option = document.createElement('option');
+                    option.value = m.id_mupio;
+                    option.textContent = m.mupio.replace(/_/g, ' ');
+                    municipioSelect.appendChild(option);
+                });
+
+                municipioSelect.disabled = false;
+            })
+            .catch(error => {
+                console.error('Error cargando municipios:', error);
+            });
+    }
+});

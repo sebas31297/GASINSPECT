@@ -13,12 +13,12 @@ class AccesoController {
             $modelo = new UsuarioModel();
             $usuario = $modelo->getUsuarioPorEmail($email);
 
-            // ⚠️ Asegúrate de que la contraseña esté encriptada con password_hash
-            if ($usuario && password_verify($contrasena, $usuario['contrasena'])) {
+            // codigo para almacenar contraseña en texto plano
+            if ($usuario && $contrasena === $usuario['contrasena']) {
                 session_start();
                 $_SESSION['usuario_id'] = $usuario['id_usuario'];
                 $_SESSION['usuario_email'] = $usuario['correo'];
-                header('Location: inicio.html'); // Cambia esto a donde quieras redirigir después del login
+                header('Location: inicio.html'); // redirección a inicio.html
                 exit;
             } else {
                 header('Location: acceso.php?error=1');

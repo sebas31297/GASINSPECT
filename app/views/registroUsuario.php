@@ -68,15 +68,7 @@ require_once __DIR__. '/../controllers/formUserController.php';
 
 <!--mostrar mensaje de exito o errror si existe -->
                  
-                <?php if (isset($_SESSION['mensaje'])): ?>
-                    <div class="container mt-3">
-                    <div class="alert alert-<?php echo $_SESSION['mensaje']['tipo']; ?> alert-dismissible fade show" role="alert">
-                        <?php echo $_SESSION['mensaje']['texto']; ?>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
-                    </div>
-                </div>
-                <?php unset($_SESSION['mensaje']); ?>
-                <?php endif; ?>
+            
                 <?php if (isset($mensaje)): ?>
                 <div class="alert alert-<?= $mensaje['tipo'] ?>" role="alert">
                     <?= $mensaje['texto'] ?>

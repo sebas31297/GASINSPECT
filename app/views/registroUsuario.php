@@ -1,5 +1,7 @@
 <?php 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 if (isset($_SESSION['mensaje'])): ?>
     <div class="container mt-3">
@@ -74,6 +76,11 @@ require_once __DIR__. '/../controllers/formUserController.php';
                     </div>
                 </div>
                 <?php unset($_SESSION['mensaje']); ?>
+                <?php endif; ?>
+                <?php if (isset($mensaje)): ?>
+                <div class="alert alert-<?= $mensaje['tipo'] ?>" role="alert">
+                    <?= $mensaje['texto'] ?>
+                 </div>
                 <?php endif; ?>
                     <!--Formulario de registro de usuario -->
                     <form id="registroForm" method="POST" action="/GASINSPECT/public/index.php?action=registrar" enctype="multipart/form-data"><!--apertura para establecer un formulario / enctype para la foto-->

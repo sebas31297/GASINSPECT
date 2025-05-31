@@ -1,5 +1,6 @@
 <?php  //contenido php
-require_once __DIR__ .'/../config/database.php'; //inclusión del archivo database.php de la carpeta "config" en donde se guardará la informacion
+error_reporting(E_ALL);
+require_once __DIR__ .'/../../config/database.php'; //inclusión del archivo database.php de la carpeta "config" en donde se guardará la informacion
 use config\Database;  //uso de la clase Database que está dentro del namespace "config" ubicados en "config/database.php"
 
 

@@ -1,109 +1,144 @@
 <?php
-// App/Controller/UsuarioController.php
+namespace app\controllers;
 
-namespace App\Controller;
 
-use App\Model\UsuarioModel;
+require_once '../app/models/UsuarioModel.php'; 
+
+
+
+use app\models\UsuarioModel;
+
 
 class UsuarioController
 {
-    private $usuarioModel;
+    private $model;
 
     public function __construct()
     {
-        $this->usuarioModel = new UsuarioModel();
+        $this->model = new UsuarioModel();
     }
-    /** Inserta un nuevo usuario */
-    public function insertarUsuario()
+                                        //registrar Usuario
+    public function mostrarFormularioRegistro()
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $nombre = $_POST['nombre'] ?? '';
-            $email = $_POST['email'] ?? '';
-            $telefono = $_POST['telefono'] ?? '';
-            $tipoDocumento = $_POST['tipo_documento'] ?? '';
-            $identificacion = $_POST['identificacion'] ?? '';
-            $dependencia = $_POST['dependencia'] ?? '';
-            $fechaIngreso = $_POST['fecha_ingreso'] ?? '';
-            $duracionContrato = $_POST['duracion_contrato'] ?? '';
-            $tipoContrato = $_POST['tipo_contrato'] ?? '';
-            $fotoPerfil = $_FILES['foto_perfil']['name'] ?? '';
+         require_once __DIR__ . '/../views/registroUsuario.php';
+    }
 
-            // mueve la foto de perfil a una carpeta destino
-            move_uploaded_file(
-                $_FILES['foto_perfil']['tmp_name'],
-                'fotos_perfil/' . $fotoPerfil);
-            // Inserta el usuario en la base de datos
-            $this->usuarioModel->insertarUsuario(
-                $nombre,
-                $email,
-                $telefono,
-                $tipoDocumento,
-                $identificacion,
-                $dependencia,
-                $fechaIngreso,
-                $duracionContrato,
-                $tipoContrato,
-                $fotoPerfil
-            );
-            // redirecciona a una pagina de éxito o a la lista de usuarios
-            header('Location: /usuario_registrado.php');
-            exit;
+   public function registrarUsuario(array $datos) : void
+    {
+        if (session_status() === PHP_SESSION_NONE) {
+        session_start();
         }
-    }
-    /** lista todos los usuarios */
-    public function listarUsuarios()
-    {
-        $usuarios = $this->usuarioModel->getUsuarios();
-        // Renderiza la vista con la lista de usuarios
-        include 'usuarios.php';
-    }
+        // Validar si ya existe la identificación
+        if ($this->model->existeIdentificacion($datos['identificacion'])) {
+        $_SESSION['mensaje'] = ['texto' => 'Ya existe un usuario con esa identificación.', 'tipo' => 'danger'];
+        header('Location: ../app/views/registroUsuario.php');
+        exit;
+        }
 
-    /** edita un usuario */
-    public function editarUsuario(int $id)
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $nombre = $_POST['nombre'] ?? '';
-            $email = $_POST['email'] ?? '';
-            $telefono = $_POST['telefono'] ?? '';
-            $tipoDocumento = $_POST['tipo_documento'] ?? '';
-            $identificacion = $_POST['identificacion'] ?? '';
-            $dependencia = $_POST['dependencia'] ?? '';
-            $fechaIngreso = $_POST['fecha_ingreso'] ?? '';
-            $duracionContrato = $_POST['duracion_contrato'] ?? '';
-            $tipoContrato = $_POST['tipo_contrato'] ?? '';
-            $fotoPerfil = $_FILES['foto_perfil']['name'] ?? '';
+        $nombre = $datos['nombre_usuario'] ?? '';
+        $correo = $datos['correo'] ?? '';
+        $telefono = $datos['telefono'] ?? '';
+        $direccion = $datos['direccion'] ?? '';
+        $contrasena = $datos['contrasena'] ?? '';
+        $tipo_documento = isset($datos['id_tipo_documento']) ? (int)$datos['id_tipo_documento'] : null;
+        $cargo = isset($datos['id_cargo']) ? (int)$datos['id_cargo'] : null;
+        $identificacion = $datos['identificacion'] ?? '';
+        $foto = null; // Para simplificar
 
-            // actualiza el usuario en la base de datos
-            $this->usuarioModel->actualizarUsuario(
-                $id,
-                $nombre,
-                $email,
-                $telefono,
-                $tipoDocumento,
-                $identificacion,
-                $dependencia,
-                $fechaIngreso,
-                $duracionContrato,
-                $tipoContrato,
-                $fotoPerfil
-            );
-            // redirecciona a una pagina de éxito o a la lista de usuarios
-            header('Location: /usuario_actualizado.php');
-            exit;
+        $exito = $this->model->insertarUsuario(
+            $nombre,
+            $correo,
+            $telefono,
+            $direccion,
+            $contrasena,
+            $tipo_documento,
+            $cargo,
+            $identificacion,
+            $foto
+        );
+
+        if ($exito) {
+            $_SESSION['mensaje'] = ['texto' => 'Usuario registrado correctamente', 'tipo' => 'success'];
         } else {
-            // Obtiene el usuario por ID
-            $usuario = $this->usuarioModel->getUsuarioById($id);
-            // Renderiza la vista de edición con el formulkario de edicion
-            include 'editar_usuario.php';
+            $_SESSION['mensaje'] = ['texto' => 'Error al registrar usuario', 'tipo' => 'danger'];
         }
+
+        // Redirigir para mostrar el formulario y el mensaje
+        header('Location: index.php');
+        exit;
     }
-    /** Elimina un usuario */
-    public function eliminarUsuario(int $id)
+    
+    public function mostrarFormularioEditarPerfil()
     {
-        $this->usuarioModel->eliminarUsuario($id);
-        // Redirecciona a una pagina de éxito o a la lista de usuarios
-        header('Location: usuarios.php');
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    // Suponiendo que tienes el ID del usuario en sesión
+    $id_usuario = $_SESSION['id_usuario'] ?? null;
+
+    if (!$id_usuario) {
+        // Si no hay usuario logueado, redirige o muestra error
+        header('Location: index.php?action=formulario');
         exit;
     }
 
+    // Obtener datos del usuario por ID
+    $usuario = $this->model->obtenerUsuarioPorId($id_usuario);
+
+    if (!$usuario) {
+        // Usuario no encontrado
+        header('Location: index.php?action=formulario');
+        exit;
+    }
+
+    // Incluir vista del formulario de edición con los datos cargados
+    include __DIR__ . '/../views/EditarPerfil.php';
+    }
+    //obtener usuario por ID
+    public function obtenerUsuarioPorId(int $id): ?array
+    {
+        return $this->model->obtenerUsuarioPorId($id);
+    }
+                                            // edicionPerfil
+    public function actualizarUsuario(array $datos): void
+    {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        $id_usuario = isset($datos['id_usuario']) ? (int)$datos['id_usuario'] : 0;
+        $nombre = $datos['nombre_usuario'] ?? '';
+        $correo = $datos['correo'] ?? '';
+        $telefono = $datos['telefono'] ?? '';
+        $direccion = $datos['direccion'] ?? '';
+        $contrasena = $datos['contrasena'] ?? '';
+        $tipo_documento = isset($datos['id_tipo_documento']) ? (int)$datos['id_tipo_documento'] : null;
+        $cargo = isset($datos['id_cargo']) ? (int)$datos['id_cargo'] : null;
+        $identificacion = $datos['identificacion'] ?? '';
+        $foto = null; // O manejar la subida si es necesario
+
+        $exito = $this->model->actualizarUsuario(
+            $id_usuario,
+            $nombre,
+            $correo,
+            $telefono,
+            $direccion,
+            $contrasena,        
+            $tipo_documento,
+            $cargo,
+            $identificacion,
+            $foto
+        );
+
+        if ($exito) {
+            $_SESSION['mensaje'] = ['texto' => 'Perfil actualizado correctamente', 'tipo' => 'success'];
+        } else {
+            $_SESSION['mensaje'] = ['texto' => 'Error al actualizar perfil', 'tipo' => 'danger'];
+        }
+
+    // Redirige de vuelta al formulario de edición
+        header('Location: EditarPerfil.php');
+        exit;
+    }
 }

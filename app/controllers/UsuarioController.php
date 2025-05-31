@@ -1,6 +1,11 @@
 <?php
 namespace app\controllers;
 
+
+require_once '../app/models/UsuarioModel.php'; 
+
+
+
 use app\models\UsuarioModel;
 
 

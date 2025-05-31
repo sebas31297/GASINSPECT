@@ -5,9 +5,6 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 
-//inclusión del controlador formUserController.php para que prepare los datos que el formulario necesitará
-require_once __DIR__. '/../controllers/formUserController.php'; 
-
 
 ?>
 

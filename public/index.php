@@ -2,6 +2,8 @@
 require_once '../app/controllers/UsuarioController.php';
 use app\controllers\UsuarioController;
 
+session_start();//agrego en editar
+
 $action = $_GET['action'] ?? 'formulario';
 
 $usuarioController = new UsuarioController();

@@ -6,6 +6,19 @@ error_reporting(E_ALL);
 
 require_once __DIR__. '/../controllers/formUserController2.php';
 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Mostrar mensaje flash si existe y luego borrarlo
+if (isset($_SESSION['mensaje'])): ?>
+    <div class="alert alert-<?= $_SESSION['mensaje']['tipo'] ?> mx-3 mt-3">
+        <?= htmlspecialchars($_SESSION['mensaje']['texto']) ?>
+    </div>
+<?php
+    unset($_SESSION['mensaje']);
+endif;
+
 ?>
 
 <!DOCTYPE html>
@@ -17,11 +30,11 @@ require_once __DIR__. '/../controllers/formUserController2.php';
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"><!--banderas -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet"><!--iconos-->
-    <link rel="stylesheet" href="../views/main.css"><!-- Estilos personalizados -->
+    <link rel="stylesheet" href="/GASINSPECT/app/views/main.css"><!-- Estilos personalizados -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!--favicon-->
-    <link rel="icon" type="image/x-icon"    href="../views/logo/logimag.png">
+    <link rel="icon" type="image/x-icon"    href="/GASINSPECT/app/views/logo/logimag.png">
 </head>
 
 <body>
@@ -54,7 +67,7 @@ require_once __DIR__. '/../controllers/formUserController2.php';
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label class="form-label">Nombre completo</label>
-                            <input type="text" class="form-control" name="nombre_usuario" value="<?=htmlspecialchars($usuario['nombre_usuario'] ?? '') ?>" required>
+                            <input type="text" class="form-control" name="nombre_usuario" value="<?=htmlspecialchars($usuario['nombre_usuario'] ?? '') ?>"placeholder="Nombre completo" required>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Email</label>
@@ -132,6 +145,7 @@ require_once __DIR__. '/../controllers/formUserController2.php';
                             <button type="submit" class="btn btn-save btn-sm">Guardar</button>
                         </div>
                     </div>
+                    
                 </form>
             </div>
         </div>

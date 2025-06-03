@@ -160,7 +160,7 @@ require_once __DIR__. '/../controllers/formUserController.php';
                         <!-- Botón Registrar -->
                             <div class="row mb-3 mt-4">
                                 <div class="col-md-12 text-end">
-                                    <button type="button" class="btn btn-save btn-sm" onclick="window.location.href='acceso.html'">Atras</button>
+                                    <button type="button" class="btn btn-save btn-sm" onclick="window.location.href='/GASINSPECT/app/views/acceso.php'">Atras</button>
                                     <button type="submit" name= "submit"  class="btn btn-save btn-sm">Registrar</button>
                                 </div>
                             </div>

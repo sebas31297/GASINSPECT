@@ -1,14 +1,24 @@
 <?php
 require_once '../app/controllers/UsuarioController.php';
+require_once '../app/controllers/AccesoController.php';
+require_once '../app/config/database.php';
+
 use app\controllers\UsuarioController;
+use app\controllers\AccesoController;
 
 session_start();//agrego en editar
 
-$action = $_GET['action'] ?? 'formulario';
+$action = $_GET['action'] ?? 'login';
 
+$AccesoController = new AccesoController();
 $usuarioController = new UsuarioController();
 
+
 switch ($action) {
+
+    case 'login':
+        $AccesoController->mostrarFormulariologin();
+        break;
     // Registro usuario
     case 'registrar':
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -41,6 +51,6 @@ switch ($action) {
 
     default:
         // Por seguridad, muestra el formulario de registro si no se reconoce la acción
-        $usuarioController->mostrarFormularioRegistro();
+        $AccesoController->mostrarFormulariologin();
         break;
 }

@@ -48,7 +48,7 @@ endif;
     <div
         class="col-md-11 p-3 d-flex justify-content-between aling-items-center border-bottom border-gris-oscuro border-2">
         <h2 class=" mt-1 text-success fw-semibold" id="tituloRegistro">Perfil</h2>
-        <button class="btn btn-secondary " onclick="window.location.href='inicio.html'">Inicio</button>
+        <button class="btn btn-secondary " onclick="window.location.href='/GASINSPECT/app/views/inicio.html'">Inicio</button>
         <!--encabezado, tamaño (h2)=32px, para titulos, color verde, peso de fuente (semibold)-->
     </div>
 </div>
@@ -141,7 +141,7 @@ endif;
                     <!-- Botón Guardar -->
                     <div class="row mb-3">
                         <div class="col-md-12 text-end">
-                            <a href="index.php?action=logout" class="btn btn-secondary btn-sm">Cerrar sesión</a>
+                            <a href="/GASINSPECT/public/index.php?action=logout" class="btn btn-secondary btn-sm">Cerrar sesión</a>
                             <button type="submit" class="btn btn-save btn-sm">Guardar</button>
                         </div>
                     </div>

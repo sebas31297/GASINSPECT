@@ -1,7 +1,7 @@
 <?php
 namespace app\models; // app/models/UsuarioModel.php
 
-require_once '../app/config/database.php'; 
+require_once __DIR__ . '/../config/database.php';
 
 use config\Database;
 use PDO;

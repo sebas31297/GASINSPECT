@@ -1,5 +1,7 @@
 <?php
 require_once '../app/controllers/UsuarioController.php';
+require_once '../app/config/database.php';
+
 use app\controllers\UsuarioController;
 
 session_start();//agrego en editar

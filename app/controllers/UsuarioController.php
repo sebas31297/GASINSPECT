@@ -3,6 +3,8 @@ namespace app\controllers;
 
 
 require_once '../app/models/UsuarioModel.php'; 
+require_once __DIR__ . '/../models/TipoDocumentoModel.php';
+require_once __DIR__ . '/../models/TipoCargoModel.php';
 
 
 
@@ -68,77 +70,74 @@ class UsuarioController
         exit;
     }
     
-    public function mostrarFormularioEditarPerfil()
+    public function mostrarFormularioEditarPerfil():void
     {
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
+    if (!isset($_GET['id_usuario']) || empty($_GET['id_usuario'])) {
+            die('Error: debes indicar el parametro id_usuario en la URL');
+        }
+        $id = intval($_GET['id_usuario']);
 
-    // Suponiendo que tienes el ID del usuario en sesión
-    $id_usuario = $_SESSION['id_usuario'] ?? null;
+        // Obtener datos del usuario
+        $usuario = $this->model->obtenerUsuarioPorId($id);
+        if (!$usuario) {
+            die("Error: No existe ningún usuario con ID = $id");
+        }
+        // 2) Delegar la carga de $documentos, $cargos y la vista
+        //    a FormUserController2.php (que a su vez incluirá EditarPerfil.php)
+        require_once __DIR__ . '/FormUserController2.php';
+    }   
 
-    if (!$id_usuario) {
-        // Si no hay usuario logueado, redirige o muestra error
-        header('Location: index.php?action=formulario');
-        exit;
-    }
-
-    // Obtener datos del usuario por ID
-    $usuario = $this->model->obtenerUsuarioPorId($id_usuario);
-
-    if (!$usuario) {
-        // Usuario no encontrado
-        header('Location: index.php?action=formulario');
-        exit;
-    }
-
-    // Incluir vista del formulario de edición con los datos cargados
-    include __DIR__ . '/../views/EditarPerfil.php';
-    }
-    //obtener usuario por ID
-    public function obtenerUsuarioPorId(int $id): ?array
-    {
-        return $this->model->obtenerUsuarioPorId($id);
-    }
-                                            // edicionPerfil
-    public function actualizarUsuario(array $datos): void
+    public function actualizarUsuario(array $datos, array $files): void
     {
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
+        if (!isset($datos['id_usuario']) || empty($datos['id_usuario'])) {
+            die('Error: No se recibió el ID de usuario para actualizar');
+        }
+        $id = intval($datos['id_usuario']);
 
-        $id_usuario = isset($datos['id_usuario']) ? (int)$datos['id_usuario'] : 0;
-        $nombre = $datos['nombre_usuario'] ?? '';
-        $correo = $datos['correo'] ?? '';
-        $telefono = $datos['telefono'] ?? '';
-        $direccion = $datos['direccion'] ?? '';
-        $contrasena = $datos['contrasena'] ?? '';
-        $tipo_documento = isset($datos['id_tipo_documento']) ? (int)$datos['id_tipo_documento'] : null;
-        $cargo = isset($datos['id_cargo']) ? (int)$datos['id_cargo'] : null;
+        $nombre         = $datos['nombre_usuario'] ?? '';
+        $correo         = $datos['correo'] ?? '';
+        $telefono       = $datos['telefono'] ?? '';
+        $direccion      = $datos['direccion'] ?? '';
+        $contrasena     = $datos['contrasena'] ?? '';
         $identificacion = $datos['identificacion'] ?? '';
-        $foto = null; // O manejar la subida si es necesario
+        $tipo_documento = isset($datos['id_tipo_documento']) ? intval($datos['id_tipo_documento']) : null;
+        $cargo          = isset($datos['id_cargo']) ? intval($datos['id_cargo']) : null;
 
+        $nombreFoto = null; 
+        if (isset($files['foto']) && $files['foto']['error'] === UPLOAD_ERR_OK) {
+            $tmpPath = $files['foto']['tmp_name'];
+            $ext     = pathinfo($files['foto']['name'], PATHINFO_EXTENSION);
+            $nombreFoto = 'usuario_' . $id . '_' . time() . '.' . $ext;
+            $destino = __DIR__ . '/../uploads/' . $nombreFoto;
+            if (!move_uploaded_file($tmpPath, $destino)) {
+                $_SESSION['mensaje'] = ['texto' => 'No se pudo subir la foto de perfil', 'tipo' => 'warning'];
+            }
+        }
+    
         $exito = $this->model->actualizarUsuario(
-            $id_usuario,
+            $id,
             $nombre,
             $correo,
             $telefono,
             $direccion,
-            $contrasena,        
+            $contrasena,
             $tipo_documento,
             $cargo,
             $identificacion,
-            $foto
+            $nombreFoto
         );
 
         if ($exito) {
             $_SESSION['mensaje'] = ['texto' => 'Perfil actualizado correctamente', 'tipo' => 'success'];
         } else {
-            $_SESSION['mensaje'] = ['texto' => 'Error al actualizar perfil', 'tipo' => 'danger'];
+            $_SESSION['mensaje'] = ['texto' => 'Hubo un problema al actualizar el perfil', 'tipo' => 'danger'];
         }
-
-    // Redirige de vuelta al formulario de edición
-        header('Location: EditarPerfil.php');
+        header("Location: index.php?action=editarPerfil&id_usuario=$id");
         exit;
     }
+    
+        
 }

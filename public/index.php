@@ -48,6 +48,9 @@ switch ($action) {
             exit;
         }
         break;
+    case 'eliminar':
+        $usuarioController->eliminarUsuario();
+        break;
 
     default:
         // Por seguridad, muestra el formulario de registro si no se reconoce la acción

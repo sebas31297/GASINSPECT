@@ -138,6 +138,26 @@ class UsuarioController
         header("Location: index.php?action=editarPerfil&id_usuario=$id");
         exit;
     }
-    
-        
-}
+    public function eliminarUsuario():void
+    {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        if (!isset($_GET['id_usuario']) || empty($_GET['id_usuario'])) {
+            die('Error: Falta el ID de usuario para eliminar.');
+        }
+        $id = intval($_GET['id_usuario']);
+        $exito = $this->model->eliminarUsuario($id);
+        if ($exito) {
+            $_SESSION['mensaje'] = ['texto' => 'Usuario eliminado correctamente', 'tipo' => 'success'];
+        } else {
+            $_SESSION['mensaje'] = ['texto' => 'Hubo un problema al eliminar el usuario', 'tipo' => 'danger'];
+        }
+            // despues de eliminar, cerramos la sesion y dirigimos al login 
+            session_unset();
+            session_destroy();
+            header('Location: index.php?action=login');
+            exit;
+    }
+} 
+

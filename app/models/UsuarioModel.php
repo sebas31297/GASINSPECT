@@ -122,7 +122,7 @@ class UsuarioModel
     /** Elimina un usuario por su ID , opcion sin editar y confirmar*/
     public function eliminarUsuario(int $id): bool
     {
-        $sql  = "DELETE FROM usuarios WHERE id_usuario = :id";
+        $sql  = "DELETE FROM usuario WHERE id_usuario = :id";
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         return $stmt->execute();

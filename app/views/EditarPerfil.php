@@ -141,8 +141,10 @@ endif;
                     <!-- Botón Guardar -->
                     <div class="row mb-3">
                         <div class="col-md-12 text-end">
-                            <a href="/GASINSPECT/public/index.php?action=logout" class="btn btn-secondary btn-sm">Cerrar sesión</a>
+
+                            <a href="/GASINSPECT/public/index.php?action=logout" class="btn btn-primary btn-sm">Cerrar sesión</a>
                             <button type="submit" class="btn btn-save btn-sm">Guardar</button>
+                            <a href="/GASINSPECT/public/index.php?action=eliminar&id_usuario=<?= $usuario['id_usuario'] ?>" class="btn btn-secondary btn-sm" onclick="return confirm('¿Estás seguro de eliminar tu cuenta? Esta acción no se puede deshacer.');">Eliminar</a>
                         </div>
                     </div>
                     

@@ -3,7 +3,7 @@
 
 namespace App\Controller;
 
-use App\Model\UsuarioModel;
+use app\models\UsuarioModel;
 
 class UsuarioController
 {

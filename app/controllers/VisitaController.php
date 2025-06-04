@@ -9,10 +9,7 @@ require_once __DIR__ . '/../models/VisitaModel.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $visitaModel = new VisitaModel();
 
-    // Verificar si 'id_mupio' está presente en el formulario
-    $id_mupio = isset($_POST['id_mupio']) ? $_POST['id_mupio'] : null;
-
-    // Preparar los datos para la inserción
+    // Preparar los datos para la inserción/actualización
     $datos = [
         ':identificacion' => $_POST['identificacion'],
         ':nombre_cliente' => $_POST['nombre_cliente'],
@@ -20,25 +17,54 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         ':direccion' => $_POST['direccion'],
         ':fecha' => $_POST['fecha'],
         ':numero_contrato' => $_POST['numero_contrato'],
-        ':valor_revicion' => $_POST['valor_revision'],
+        ':valor_revicion' => $_POST['valor_revicion'],
         ':id_tipo_documento' => $_POST['id_tipo_documento'],
         ':id_depto' => $_POST['id_depto'],
-        ':id_mupio' => $id_mupio,
+        ':id_mupio' => $_POST['id_mupio'] ?? null,
         ':id_distribuidora' => $_POST['id_distribuidora'],
         ':id_tipo_gas' => $_POST['id_tipo_gas'],
         ':id_tipo_instalacion' => $_POST['id_tipo_instalacion'],
         ':id_tipo_servicio' => $_POST['id_tipo_servicio'],
         ':observaciones' => $_POST['observaciones'],
         ':id_estado' => $_POST['id_estado'],
-        ':id_usuario' => null // Asignación temporal hasta implementar autenticación
+        ':id_usuario' => null // Temporal hasta autenticación
     ];
 
-    // Intentar registrar la visita
-    if ($visitaModel->registrarVisita($datos)) {
-        header("Location: ../VIEWS/agenda.html");
-        exit;
+    // Detectar si es edición (si se está enviando un id_visita)
+    $id_visita = $_POST['id_visita'] ?? null;
+
+    if ($id_visita) {
+        // Actualizar visita existente
+        if ($visitaModel->actualizarVisita($id_visita, $datos)) {
+            header("Location: ../VIEWS/inspectAgendadas.php");
+            exit;
+        } else {
+            echo "Error al actualizar la visita.";
+        }
     } else {
-        echo "Error al registrar la visita.";
+        // Registrar nueva visita
+        if ($visitaModel->registrarVisita($datos)) {
+            header("Location: ../VIEWS/inspectAgendadas.php");
+            exit;
+        } else {
+            echo "Error al registrar la visita.";
+        }
     }
+}
+
+// Métodos para consultas
+function listarVisitas() {
+    $visitaModel = new VisitaModel();
+    return $visitaModel->obtenerTodasLasVisitas();
+}
+
+function filtrarVisitas($filtros) {
+    $visitaModel = new VisitaModel();
+    return $visitaModel->filtrarVisitas($filtros);
+}
+
+function obtenerInspectores() {
+    $visitaModel = new VisitaModel();
+    return $visitaModel->obtenerInspectores();
 }
 ?>

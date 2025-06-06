@@ -10,7 +10,7 @@ class Database { //definiciín de la clase para la coneccion con la base de dato
     private $host = "localhost";      //direccion del servidor de la base de datos
     private $db_name = "gasinspect"; // <--nombre de la BD a conectar
     private $username = "root";     // <-- usuario de acceso a la BD. Cambiar si usa otro usuario
-    private $password = "";        // <-- contraseña si la hay
+    private $password = "MINOMBRE";        // <-- contraseña si la hay
     private $connection= null;         //variable que almacenará la instancia de conexion en PDO
 
     public function getConnection(): PDO { //conexion publica, que puede ser llamada por otras partes de codigo de dieferentes carpetas del proyecto

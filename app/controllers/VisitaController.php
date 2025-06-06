@@ -7,8 +7,37 @@ session_start();
 require_once __DIR__ . '/../models/VisitaModel.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $visitaModel = new VisitaModel();
 
+    if (isset($_POST['action']) && $_POST['action'] == 'eliminar') {
+        header('Content-Type: application/json');
+        
+        try {
+            
+            $visitaModel = new VisitaModel();
+
+            $id_visita = $_POST['id_visita'] ?? null;
+
+           if (empty($_POST['id_visita'])) {
+           throw new Exception('ID de visita no proporcionado');
+           }
+
+            
+            if (!$id_visita) {
+                throw new Exception('ID de visita no proporcionado');
+            }
+            
+            if ($visitaModel->eliminarVisita($id_visita)) {
+                echo json_encode(['success' => true, 'message' => 'Visita eliminada correctamente']);
+            } else {
+                throw new Exception('No se pudo eliminar la visita');
+            }
+        } catch (Exception $e) {
+            echo json_encode(['success' => false, 'message' => $e->getMessage()]);
+        }
+        exit;
+    }
+
+    $visitaModel = new VisitaModel();
     // Preparar los datos para la inserción/actualización
     $datos = [
         ':identificacion' => $_POST['identificacion'],

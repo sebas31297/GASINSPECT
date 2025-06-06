@@ -110,7 +110,7 @@ if (!empty($_GET)) {
                         </select>
 
                         <!-- Etiqueta y desplegable para la busqueda -->
-                        <label for="cedula" class="form-label mt-2 text-azul-institucional">Cedula del usuario:</label>
+                        <label for="cedula" class="form-label mt-2 text-azul-institucional">Cedula del cliente:</label>
                         <input type="number" class="form-control text-azul-institucional" id="cedula" name="cedula"
                             value="<?= $_GET['cedula'] ?? '' ?>" placeholder="Ejemplo: 123">
 
@@ -147,11 +147,15 @@ if (!empty($_GET)) {
         <!-- Contenido dinámico aquí -->
         </div>
         <div class="modal-footer">
+            <button type="button" class="btn btn-danger" id="btnEliminarInspeccion">Eliminar</button>
            <button type="button" class="btn btn-primary" id="btnEditarInspeccion">Editar</button>
         </div>
     </div>
   </div>
 </div>
+
+
+
 
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

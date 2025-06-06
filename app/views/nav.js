@@ -1,3 +1,4 @@
+console.log("nav.js cargado correctamente");
 
 
 
@@ -208,10 +209,6 @@ document.addEventListener('DOMContentLoaded', () => {///////////////////////////
     
             calendar.render();//actualiza el fullcalendar
         }
-
-    //inicialización de dos calendarios
-    updateCalendarAgenda();//actualiza el primer calendario de la ventana agenda
-    updateCalendarRegistro();//actualiza el calendario de registro de inspección
 
 
 
@@ -441,5 +438,6 @@ document.getElementById('filtroForm').addEventListener('submit', function(e) {
                 .getElementById('lista-visitas').innerHTML;
         });
 });
+
 
 

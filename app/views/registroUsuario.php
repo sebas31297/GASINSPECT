@@ -1,4 +1,4 @@
-<?php require_once __DIR__. '/../controllers/formUserController.php'; ?> <!--inclusión del controlador formularioController.php para que prepare los datos que el formulario necesitará-->
++<?php require_once __DIR__. '/../controllers/formUserController.php'; ?> <!--inclusión del controlador formularioController.php para que prepare los datos que el formulario necesitará-->
 <!DOCTYPE html>
 <html lang="es">
 <head>

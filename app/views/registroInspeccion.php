@@ -1,4 +1,4 @@
-<?php require_once __DIR__ . '/../controllers/formularioController.php'; ?> <!--inclusión del controlador formularioController.php para que prepare los datos que el formulario necesitará-->
+<?php require_once __DIR__ . '/../controllers/FormularioController.php'; ?> <!--inclusión del controlador formularioController.php para que prepare los datos que el formulario necesitará-->
 
 <!DOCTYPE html>
 <html lang="es">
@@ -177,7 +177,10 @@
                               <select name="id_depto" id="id_depto" class="form-select"><!--formulario de selección de opciones, de llenado obligatorio (required)-->
                                 <option disabled selected>Seleccione un departamento</option><!--titulo guia interno del spaceholder-->
                                 <?php foreach ($departamentos as $depto): ?><!--recorre la lista de la tabla depto de la BD y guarda cada opcion en la variable $depto-->
-                                    <option value="<?= $depto['id_depto'] ?>"><?= $depto['depto'] ?><!--creación de lista de opciones con el valor que la variable $depto arroje según el id de cada opcion-->
+                                    <option value="<?= $depto['id_depto'] ?>"
+                                        <?= isset($visita) && $visita['id_depto'] == $depto['id_depto'] ? 'selected' : '' ?>>
+                                        <?= $depto['depto'] ?>
+                                    </option><!--creación de lista de opciones con el valor que la variable $depto arroje según el id de cada opcion-->
                                 <?php endforeach; ?><!--cierre de bucle foreach-->
                               </select>
                               
@@ -247,10 +250,9 @@
                             <option selected disabled>Elija el tipo de servicio</option><!--titulo guia interno del spaceholder-->
                             <?php foreach ($tiposServicio as $tipoServi): ?> <!--recorre la lista de la tabla tipo_gas de la BD y guarda cada opcion en la variable $dist-->
                                 <option value="<?= $tipoServi['id_tipo_servicio'] ?>"
-                                    <?= isset($visita) && $visita['id_tipo_servicio'] == $tipoServi['id_tipo_servicio'] ? 'selected' : '' ?>>
+                                    <?= isset($visita) && $visita['id_tipo_servicio'] == $tipoServi['id_tipo_servicio'] ? 'selected' : '' ?>><!--creación de lista de opciones con el valor que la variable $tipoGas arroje según el id de cada opcion--> 
                                     <?= $tipoServi['tipo_servicio'] ?>
-                                </option><!--creación de lista de opciones con el valor que la variable $tipoGas arroje según el id de cada opcion--> 
-                             <?php endforeach; ?><!--cierre de bucle foreach-->
+                                <?php endforeach; ?><!--cierre de bucle foreach-->
                         </select>
                     </div>
                 </div>
@@ -296,7 +298,7 @@
 
                 <div class="row"><!--fila-->
                     <div class="col-md-12 d-flex justify-content-end align-items-end"><!--columna, ocupa todo el espacio disponible,flexible, contenido al final horizontal y verticalmente-->
-                        <input class="btn" type="submit" value="Registrar"><!--boton tipo "submit" esencial para enviar el formulario. no es necesario un onclick. el controlador redirige la pagina-->
+                        <input type="submit" value="Guardar" class="btn btn-primary"><!--boton tipo "submit" esencial para enviar el formulario. no es necesario un onclick. el controlador redirige la pagina-->
                     </div>
                 </div>
             </form>
@@ -316,14 +318,6 @@
 
 
 
-
-
-
-
-
-
-
-
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
         crossorigin="anonymous"></script>
@@ -332,6 +326,9 @@
         integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
         crossorigin="anonymous"></script><!--enlace para librería javascript de bootstrap-->
         <script src="nav.js"></script>
+
+
+        
 </body>
 
 </html>

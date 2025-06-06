@@ -183,6 +183,34 @@ public function actualizarVisita($id_visita, $datos) {
     return $stmt->execute($datos);
 }
 
-
+//metodo para eliminar una visita
+public function eliminarVisita($id_visita) {
+    try {
+        // Preparamos la consulta SQL
+        $query = "DELETE FROM visita WHERE id_visita = :id_visita";
+        $stmt = $this->db->prepare($query);
+        
+        // Vinculamos el parámetro
+        $stmt->bindParam(':id_visita', $id_visita, PDO::PARAM_INT);
+        
+        // Ejecutamos la consulta
+        $resultado = $stmt->execute();
+        
+        // Verificamos si se afectó alguna fila
+        if ($stmt->rowCount() > 0) {
+            return true;
+        } else {
+            // No se encontró la visita con ese ID
+            return false;
+        }
+    } catch (PDOException $e) {
+        // Registramos el error en el log del servidor
+        error_log("Error al eliminar visita: " . $e->getMessage());
+        
+        // Opcional: Podrías lanzar la excepción para manejarla en el controlador
+        // throw $e;
+        return false;
+    }
+}
 
 }

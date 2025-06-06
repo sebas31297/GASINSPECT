@@ -1064,25 +1064,6 @@ box-shadow: 0 0 5px rgba(0,0,0,0.3);/*sombra detras del calendario*/
 
 
 
-#botonSiguiente {/*estilo del boton en apariencia*/
-    background-color: #033076;
-    color: white;
-}
-#botonSiguiente:hover {/*estilo en interaccion con botones*/
-    background-color: #0d6efd;
-    color: white;
-}
-
-#botonSiguiente:active {/*estilo en interaccion con botones*/
-    background-color: #033076;
-    color: white;
-}
-
-
-
-
-
-
 
 
 

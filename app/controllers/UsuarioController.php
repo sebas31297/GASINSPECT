@@ -2,13 +2,10 @@
 namespace app\controllers;
 
 
+use app\models\UsuarioModel;
 require_once '../app/models/UsuarioModel.php'; 
 require_once __DIR__ . '/../models/TipoDocumentoModel.php';
 require_once __DIR__ . '/../models/TipoCargoModel.php';
-
-
-
-use app\models\UsuarioModel;
 
 
 class UsuarioController

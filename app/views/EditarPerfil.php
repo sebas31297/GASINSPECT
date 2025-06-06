@@ -1,3 +1,26 @@
+<?php 
+// ver errores en el navegador util para desarrrollo
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+require_once __DIR__. '/../controllers/formUserController2.php';
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Mostrar mensaje flash si existe y luego borrarlo
+if (isset($_SESSION['mensaje'])): ?>
+    <div class="alert alert-<?= $_SESSION['mensaje']['tipo'] ?> mx-3 mt-3">
+        <?= htmlspecialchars($_SESSION['mensaje']['texto']) ?>
+    </div>
+<?php
+    unset($_SESSION['mensaje']);
+endif;
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,11 +30,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"><!--banderas -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet"><!--iconos-->
-    <link rel="stylesheet" href="../views/main.css"><!-- Estilos personalizados -->
+    <link rel="stylesheet" href="/GASINSPECT/app/views/main.css"><!-- Estilos personalizados -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!--favicon-->
-    <link rel="icon" type="image/x-icon"    href="../views/logo/logimag.png">
+    <link rel="icon" type="image/x-icon"    href="/GASINSPECT/app/views/logo/logimag.png">
 </head>
 
 <body>
@@ -25,7 +48,7 @@
     <div
         class="col-md-11 p-3 d-flex justify-content-between aling-items-center border-bottom border-gris-oscuro border-2">
         <h2 class=" mt-1 text-success fw-semibold" id="tituloRegistro">Perfil</h2>
-        <button class="btn btn-secondary " onclick="window.location.href='inicio.html'">Inicio</button>
+        <button class="btn btn-secondary " onclick="window.location.href='/GASINSPECT/app/views/inicio.html'">Inicio</button>
         <!--encabezado, tamaño (h2)=32px, para titulos, color verde, peso de fuente (semibold)-->
     </div>
 </div>
@@ -38,16 +61,17 @@
             <div class="card-custom">
                 <h5>Edición</h5>
                 <p>El usuario y contraseña serán enviados al correo registrado.</p>
-                <form>
+                <form action="../public/index.php?action=actualizar" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="id_usuario" value="<?= $usuario['id_usuario'] ?>">
                     <!-- Nombre completo y Email -->
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label class="form-label">Nombre completo</label>
-                            <input type="text" class="form-control" placeholder="Escribe tu nombre" required>
+                            <input type="text" class="form-control" name="nombre_usuario" value="<?=htmlspecialchars($usuario['nombre_usuario'] ?? '') ?>"placeholder="Nombre completo" required>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Email</label>
-                            <input type="email" class="form-control" placeholder="Correo electrónico" required>
+                            <input type="email" class="form-control" name="correo" value="<?=htmlspecialchars($usuario['correo'] ?? '') ?>"placeholder="Correo electrónico" required>
                         </div>
                     </div>
                     <!-- Teléfono e Identificación -->
@@ -63,12 +87,12 @@
                                     <li><a class="dropdown-item" href="#" onclick="updateCountry('+58', 've')"><span class="flag-icon flag-icon-ve"></span> Venezuela</a></li>
                                     <li><a class="dropdown-item" href="#" onclick="updateCountry('+55', 'br')"><span class="flag-icon flag-icon-br"></span> Brasil</a></li>
                                 </ul>
-                                <input type="tel" class="form-control" id="telefono" placeholder="Número de teléfono" required>
+                                <input type="tel" class="form-control" id="telefono" name="telefono" value="<?=htmlspecialchars($usuario['telefono'] ?? '') ?>"placeholder="Número de teléfono" required>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Dirección</label>
-                            <input type="text" class="form-control" placeholder="Dirección" required>
+                            <input type="text" class="form-control" name="direccion" value="<?=htmlspecialchars($usuario['direccion'] ?? '') ?>"placeholder="Dirección" required>
                         </div>
                         
                     </div>
@@ -76,7 +100,7 @@
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" placeholder="Nueva contraseña" required>
+                        <input type="password" class="form-control" name="contrasena"placeholder="Nueva contraseña" required>
                     </div>
                     <div class="col-md-6">
                         <label class="form-label">Confirmar contraseña</label>
@@ -91,44 +115,39 @@
                         <label for="identificacion" class="form-label">Identificación</label>
                         <div class="input-group">
                             <!-- Botón desplegable más pequeño -->
-                            <button type="button" class="btn btn-outline-secondary btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" id="tipoDocumentoButton">
-                               CC
-                            </button>
-                            <ul class="dropdown-menu" id="tipoDocumentoMenu">
-                                <li><a class="dropdown-item" href="#" onclick="setTipoDocumento('Cédula')">Cédula</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="setTipoDocumento('Pasaporte')">Pasaporte</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="setTipoDocumento('Tarjeta de identidad')">Tarjeta de identidad</a></li>
-                            </ul>
-                            <input type="text" class="form-control" id="identificacion" placeholder="Número de identificación" required>
+                            <select name="id_tipo_documento" id="id_tipo_documento" class="form-select- mini"><!--formulario de selección de opciones, de llenado obligatorio (required)-->
+                                    <option disabled selected>CC.</option><!--titulo guia interno del spaceholder-->
+                                    <?php foreach ($documentos as $docto): ?><!--recorre la lista de la tabla docto de la BD y guarda cada opcion en la variable $docto-->
+                                    <option value="<?= $docto['id_tipo_documento'] ?>"><?= $docto['tipo_documento'] ?></option><!--creación de lista de opciones con el valor que la variable $docto arroje según el id de cada opcion-->
+                                    <?php endforeach; ?><!--cierre de bucle foreach-->
+                                    </select>                            
+                            <input type="text" class="form-control" id="identificacion" name="identificacion" value="<?=htmlspecialchars($usuario['identificacion'] ?? '') ?>" placeholder="Número de identificación" required>
                             <span class="input-group-text"><i class="bi bi-lock"></i></span>
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <label for="dependencia" class="form-label">Dependencia</label>
-                        <div class="input-group">
-                            <button type="button" class="btn btn-outline-secondary d-flex align-items-center justify-content-between w-100" data-bs-toggle="dropdown" aria-expanded="false" id="dependenciaButton">
-                                <span class="dropdown-arrow me-2">&#9660;</span> <!-- Flecha manual a la izquierda -->
-                                <span class="flex-grow-1 text-center">Dependencia o Cargo</span> <!-- Texto centrado -->
-                                <i class="bi bi-lock ms-2"></i> <!-- Ícono de candado a la derecha -->
-                            </button>
-                            <ul class="dropdown-menu" id="dependenciaMenu">
-                                <li><a class="dropdown-item" href="#" onclick="updateDependencia('Departamento A')">Gerencia</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="updateDependencia('Departamento B')">Director Técnico</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="updateDependencia('Departamento C')">Supervisor</a></li> 
-                                <li><a class="dropdown-item" href="#" onclick="updateDependencia('Departamento D')">Aux. Administrativa</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="updateDependencia('Departamento E')">Inspector</a></li>
-                            </ul>
-                            <input type="hidden" id ="dependencia" required> 
-                        </div>
+                            <label for="dependencia" class="form-label">Dependencia</label>
+                            <select name="id_cargo" id="dependencia" class="form-select w-100"><!--formulario de selección de opciones, de llenado obligatorio (required)-->
+                                <option disabled selected>elige el cargo</option><!--titulo guia interno del spaceholder-->
+                                
+        
+                                <?php foreach ($cargos as $dep): ?><!--recorre la lista de la tabla docto de la BD y guarda cada opcion en la variable $docto-->
+                                <option value="<?= $dep['id_cargo'] ?>"><?= $dep['nombre_cargo'] ?></option><!--creación de lista de opciones con el valor que la variable $docto arroje según el id de cada opcion-->
+                                <?php endforeach; ?><!--cierre de bucle foreach-->
+                            </select>
+                         
                     </div>
                 </div>
                     <!-- Botón Guardar -->
                     <div class="row mb-3">
                         <div class="col-md-12 text-end">
-                            <button type="submit" class="btn btn-save btn-sm btn-rojo-oscuro-in" >Cerrar sesion</button>
+
+                            <a href="/GASINSPECT/public/index.php?action=logout" class="btn btn-primary btn-sm">Cerrar sesión</a>
                             <button type="submit" class="btn btn-save btn-sm">Guardar</button>
+                            <a href="/GASINSPECT/public/index.php?action=eliminar&id_usuario=<?= $usuario['id_usuario'] ?>" class="btn btn-secondary btn-sm" onclick="return confirm('¿Estás seguro de eliminar tu cuenta? Esta acción no se puede deshacer.');">Eliminar</a>
                         </div>
                     </div>
+                    
                 </form>
             </div>
         </div>
@@ -145,11 +164,11 @@
                             <!-- Ícono inicial -->
                             <i id="placeholderIcon" class="bi bi-image display-1" style="color: rgba(10, 0, 124, 0.5);"></i>
                             <!-- Imagen cargada -->
-                            <img id="previewImage" src="#" alt="Imagen de perfil" style="width: 100%; height: 100%; object-fit: cover; display: none;">
+                            <img id="previewImage" src="<?= $usuario['foto'] ? '../uploads/' . $usuario['foto'] : '#' ?>" alt="Imagen de perfil" style="width: 100%; height: 100%; object-fit: cover; display: none;">
                             <!-- Texto Importar Imagen -->
                             <p id="importText" style="position: absolute; bottom: 10px; color: rgba(10, 0, 124, 0.5); font-weight: bold;">Importar imagen</p>
                             <!-- Botón invisible para cargar archivo o tomar foto -->
-                            <input type="file" id="fileInput" accept="image/*" capture="environment" style="opacity: 0; position: absolute; width: 100%; height: 100%; cursor: pointer;" onchange="loadImage(event)">
+                            <input type="file" name="foto" id="fileInput" accept="image/*" capture="environment" style="opacity: 0; position: absolute; width: 100%; height: 100%; cursor: pointer;" onchange="loadImage(event)">
                         </div>
                         <!-- Botón para eliminar la imagen  -->
                         <button type="button" id="removeButton" class="btn btn-outline-danger btn-sm mt-2" style="display: none;" onclick="removeImage()">Eliminar imagen</button>

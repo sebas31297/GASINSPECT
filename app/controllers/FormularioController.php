@@ -8,6 +8,7 @@ require_once __DIR__ . '/../models/TipoGasModel.php';
 require_once __DIR__ . '/../models/TipoInstalacionModel.php';
 require_once __DIR__ . '/../models/TipoServicioModel.php';
 require_once __DIR__ . '/../models/EstadoModel.php';
+require_once __DIR__ . '/../models/VisitaModel.php'; // AÑADIDO para poder editar un formulario
 
 //instanciar cada modelo para poder obtener sus datos
 $tipoDocumentoModel = new TipoDocumentoModel();
@@ -18,6 +19,7 @@ $tipoGasModel = new TipoGasModel();
 $tipoInstalacionModel = new TipoInstalacionModel();
 $tipoServicioModel = new TipoServicioModel();
 $estadoModel = new EstadoModel();
+$visitaModel = new VisitaModel(); // AÑADIDO para edición de una inspeccion registrada
 
 //definir los metodos para extraer datos de la BD
 $documentos = $tipoDocumentoModel->obtenerTodos();
@@ -28,6 +30,18 @@ $tiposGas = $tipoGasModel->obtenerTodos();
 $tiposInstalacion = $tipoInstalacionModel->obtenerTodos();
 $tiposServicio = $tipoServicioModel->obtenerTodos();
 $estados = $estadoModel->obtenerTodos();
+
+
+// Lógica para editar
+$modo = $_GET['modo'] ?? 'crear';
+$id_visita = $_GET['id'] ?? null;
+$visita = null;
+
+if ($modo === 'editar' && $id_visita) {
+    $visitaModel = new VisitaModel();
+    $visita = $visitaModel->obtenerVisitaPorId($id_visita); // Función que trae los datos desde la BD
+}
+
 
 // Cargar las opciones en los select de la vista 
 require_once __DIR__ . '/../views/registroInspeccion.php';

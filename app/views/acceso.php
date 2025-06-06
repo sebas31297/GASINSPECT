@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../controllers/AccesoController.php';
+require_once __DIR__ . '/../controllers/AccesoController.php';
 
 use app\controllers\AccesoController;
 
@@ -16,8 +16,8 @@ $auth->login();
     <title>Registro de usuario</title><!--titulo de la pestaña-->
 
         
-        <link rel="icon" href="../views/logo/logimag.png" type="image/x-icon"><!--link para añadir icono de la empresa en la pestaña de la pagina web-->
-        <link rel="stylesheet" href="../views/main.css"><!--enlace de estilos css-->
+        <link rel="icon" href="/GASINSPECT/app/views/logo/logimag.png" type="image/x-icon"><!--link para añadir icono de la empresa en la pestaña de la pagina web-->
+        <link rel="stylesheet" href="/GASINSPECT/app/views/main.css"><!--enlace de estilos css-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"><!--link de bootstrap-->
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"><!--enlace con fuente de letra estilo montserrat-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet"><!--enlace con biblioteca de iconos de bootstrap-->
@@ -89,7 +89,7 @@ $auth->login();
 
                     <div class="btn-field">
                         <input class="btn" id="btnIngresar" type="submit" value="Ingresar"><!--boton para ingresar, color azul-oscuro, tipo submit (envía lo ingresado en campo de texto), con interacción al tocarlo en color azul claro-->
-                        <input class="btn" id="btnReg" onclick="window.location.href='registroUsuario.html'" value="Registrarse"><!--boton para registrarse, color blanco (transporte a otra ventana), con interacción al tocarlo en color azul claro-->
+                        <input class="btn" id="btnReg" onclick="window.location.href='/GASINSPECT/app/views/registroUsuario.php'" value="Registrarse"><!--boton para registrarse, color blanco (transporte a otra ventana), con interacción al tocarlo en color azul claro-->
                     </div>
                 </form>
             </div>
@@ -97,7 +97,7 @@ $auth->login();
 
         <div class="col-md-3 d-flex justify-content-center align-items-center"><!--segunda columna, aolumna flexible, centra sus elementos de forma vertical-->
             <div class="image-container"><!--container para imagen-->
-                <img src="./images/logoInicio.jpeg" alt="123.jpeg"><!--imagen de logo CIG en celular-->
+                <img src="/GASINSPECT/app/views/images/logoInicio.jpeg" alt="123.jpeg"><!--imagen de logo CIG en celular-->
             </div>
         </div>
     </div>

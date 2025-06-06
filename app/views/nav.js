@@ -425,3 +425,21 @@ deptoSelect.addEventListener('change', function () {
             });
     }
 });
+
+
+
+
+document.getElementById('filtroForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    
+    fetch('inspectAgendadas.php?' + new URLSearchParams(formData))
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('lista-visitas').innerHTML = 
+                new DOMParser().parseFromString(html, 'text/html')
+                .getElementById('lista-visitas').innerHTML;
+        });
+});
+
+
